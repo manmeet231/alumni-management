@@ -1,0 +1,17 @@
+.landing-container {
+  width: 125%;
+  height: 100vh;              /* full viewport height */
+  background-size: cover;      /* cover the whole area */
+  background-position: center; /* center the image */
+  background-repeat: no-repeat;
+  position: relative;          /* if you want to position content inside */
+  display: flex;               /* for centering content */
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  color: white;                /* text color */
+  text-align: center;
+}
+
+
+
