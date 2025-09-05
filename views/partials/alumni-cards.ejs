@@ -1,0 +1,33 @@
+<main class="container alumni-container" id="alumniContainer">
+    <% for (const user of users) {%>
+        <div class="card">
+            <img src="<%=user.profile_image_url%>" alt="Zoheen Shahzad" class="profile-pic">
+            <h3 class="name">
+                <%= user.name %>
+            </h3>
+            <p class="details"><strong>Batch:</strong>
+                <%= user.batch %>
+            </p>
+            <p class="details"><strong>Branch:</strong>
+                <%= user.branch %>
+            </p>
+            <p class="details"><strong>Company:</strong>
+                <%= user.company %>
+            </p>
+            <p class="details"><strong>Job Title:</strong>
+                <%= user.job_title %>
+            </p>
+            <p class="details"><strong>Location:</strong>
+                <%= user.location %>
+            </p>
+            <div class="links">
+                <a href="https://linkedin.com/in/zoheen" target="_blank" class="connect-btn">LinkedIn</a>
+
+            </div>
+
+            <a href="/profile/<%= user.user_id %>"><button class="btn btn-primary view-profile-btn"
+                    data-bs-toggle="modal" data-bs-target="#alumniModal">View Full Profile</button></a>
+        </div>
+        <%} %>
+            <!-- Alumni cards will be injected here -->
+</main>

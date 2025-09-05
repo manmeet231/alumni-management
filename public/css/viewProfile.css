@@ -1,0 +1,142 @@
+
+        
+
+        body {
+            background: #f0f2f5;
+            font-family: 'Segoe UI', sans-serif;
+        }
+        
+        .sidebar {
+            background: linear-gradient(180deg, #0d6efd, #2b82f6);
+            color: white;
+            min-height: 100vh;
+            padding-top: 30px;
+        }
+        
+        .sidebar .nav-link {
+            color: white;
+            font-weight: 500;
+            padding: 12px 20px;
+            display: flex;
+            align-items: center;
+            transition: 0.3s;
+        }
+        
+        .sidebar .nav-link i {
+            margin-right: 10px;
+        }
+        
+        .sidebar .nav-link:hover,
+        .sidebar .nav-link.active {
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 8px;
+        }
+        
+        .content {
+            padding: 40px;
+        }
+   
+        
+        
+        
+        
+        .btn-primary,
+        .btn-outline-light {
+            border-radius: 20px;
+        }
+        
+        .sidebar-footer {
+            margin-top: auto;
+            padding: 20px;
+        }
+        
+
+        .profile-container {
+            background-color: #fff;
+            max-width: 800px;
+            margin: auto;
+            border-radius: 20px;
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
+            padding: 40px;
+            text-align: center;
+        }
+
+        .profile-pic {
+            width: 150px;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 5px solid #e3eaf2;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            font-size: 2rem;
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        .tagline {
+            color: #666;
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            text-align: left;
+            margin-bottom: 40px;
+        }
+
+        .info-box {
+            background-color: #f9fafc;
+            padding: 15px 20px;
+            border-radius: 12px;
+        }
+
+        .info-box strong {
+            display: block;
+            font-weight: 600;
+            color: #444;
+        }
+
+        .achievements {
+            text-align: left;
+        }
+
+        .achievements h2 {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .achievement-card {
+            background-color: #f2f6fb;
+            padding: 20px;
+            border-left: 5px solid #4e9af1;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            transition: transform 0.2s ease;
+        }
+
+        .achievement-card:hover {
+            transform: translateY(-3px);
+        }
+
+        .achievement-card h3 {
+            margin-bottom: 5px;
+            font-size: 1.2rem;
+            color: #2a2a2a;
+        }
+
+        .achievement-card small {
+            color: #777;
+        }
+
+        .achievement-card p {
+            margin-top: 10px;
+            color: #555;
+        }

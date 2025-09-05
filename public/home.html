@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Alumni Portal</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="./css/home.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg sticky-top">
+    <div class="container">
+      <!-- Logo -->
+      <a class="navbar-brand fw-bold fs-3" href="#">
+        <img src="./images/alumni-logo-footer.png" alt="Logo">Alumni Portal</a>
+
+      <!-- Toggler -->
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <!-- Nav Links -->
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav mx-auto gap-4">
+          <li class="nav-item">
+            <a class="nav-link " aria-current="page" href="#">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#About">About</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#Alumni">Alumni</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#Contact">Contact</a>
+          </li>
+        </ul>
+
+        <!-- Buttons inside the collapsible menu but only on small screens -->
+        <div class="d-lg-none mt-3">
+          <div class="d-flex flex-row gap-2">
+            <a href="/login"><button type="button" class="btn btn-primary btn-sm rounded-pill px-4 py-2">Sign
+                In</button></a>
+            <a href="/signup"><button type="button" class="btn btn-outline-primary btn-sm rounded-pill px-4 py-2">Sign
+                Up</button></a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Buttons visible only on large screens -->
+      <div class="d-none d-lg-flex gap-2">
+        <a href="/login"><button type="button" class="btn btn-primary btn-sm rounded-pill px-4 py-2">Sign
+            In</button></a>
+        <a href="/signup"><button type="button" class="btn btn-outline-primary btn-sm rounded-pill px-4 py-2">Sign
+            Up</button></a>
+      </div>
+    </div>
+  </nav>
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <h1>Welcome to Our Alumni Portal</h1>
+      <p>Stay connected, share your journey, and celebrate success together.</p>
+      <a href="#About" class="hero-btn">Explore More</a>
+    </div>
+  </section>
+
+  <!-- Scroller Section -->
+  <section class="scroller">
+    <div class="scroller-track">
+      <div class="scroller-item">🎓 Education is the passport to the future!</div>
+      <div class="scroller-item">📚 Lifelong learning with our Alumni community!</div>
+      <div class="scroller-item">🏫 Stay connected with your alma mater!</div>
+      <div class="scroller-item">🎉 Celebrating achievements together!</div>
+      <div class="scroller-item">🌟 Knowledge grows when shared!</div>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section id="About" class="about-section">
+    <div class="container">
+      <div class="row align-items-center">
+
+        <div class="col-md-6 about-visual">
+          <div class="circle-image">
+            <img
+              src="https://plus.unsplash.com/premium_vector-1732704035816-d123bef18b57?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8YWJvdXQlMjBzZWN0aW9ufGVufDB8fDB8fHww"
+              alt="Alumni Illustration" class="main-img">
+            <img src="https://randomuser.me/api/portraits/men/32.jpg" class="small-img img1" alt="Small Alumni">
+            <img src="https://randomuser.me/api/portraits/women/44.jpg" class="small-img img2" alt="Small Alumni">
+            <img src="https://randomuser.me/api/portraits/men/76.jpg" class="small-img img3" alt="Small Alumni">
+          </div>
+        </div>
+
+        <div class="col-md-6 about-text">
+          <h5 class="tagline">ABOUT</h5>
+          <h2 class="main-heading">Connecting Alumni, Creating Opportunities</h2>
+          <p class="subtext">Strengthen lifelong bonds, discover new collaborations, and stay part of a thriving alumni
+            community.</p>
+
+          <ul class="about-list">
+            <li><strong>Stay Connected:</strong> Reunite with classmates, seniors, and mentors across the globe.</li>
+            <li><strong>Grow Together:</strong> Explore professional opportunities, mentorship programs, and
+              collaborations.</li>
+            <li><strong>Celebrate Journeys:</strong> Share achievements, attend reunions, and be a part of alumni
+              milestones.</li>
+          </ul>
+          <a href="#" class="learn-more-btn">Learn More →</a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- Alumni-card section -->
+  <section id="Alumni" class="alumni-section">
+    <div class="container">
+      <h2 class="section-heading text-center">Our Alumni</h2>
+      <p class="section-subheading text-center mb-5">Meet our successful graduates who are making a difference</p>
+
+      <div class="alumni-grid">
+
+        <!-- card-1 -->
+        <div class="alumni-card">
+          <div class="alumni-image">
+            <img src="./images/alumni-card-img.jpg" alt="John Doe">
+          </div>
+          <div class="alumni-content">
+            <h3>John Doe</h3>
+            <p class="alumni-designation">Software Engineer at Google</p>
+            <div class="alumni-info">
+              <p><i class="fas fa-graduation-cap"></i> <span>Batch: 2010</span></p>
+              <p><i class="fas fa-laptop-code"></i> <span>Computer Science</span></p>
+              <p><i class="fas fa-map-marker-alt"></i> <span>California, USA</span></p>
+            </div>
+            <div class="alumni-social">
+              <a href="https://github.com" target="_blank" class="social-btn github">
+                <i class="fab fa-github"></i> GitHub
+              </a>
+              <a href="https://linkedin.com" target="_blank" class="social-btn linkedin">
+                <i class="fab fa-linkedin-in"></i> LinkedIn
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- card-2 -->
+        <div class="alumni-card">
+          <div class="alumni-image">
+            <img src="https://images.unsplash.com/photo-1607746882042-944635dfe10e?crop=faces&fit=crop&h=500&w=500"
+              alt="Jane Smith">
+          </div>
+          <div class="alumni-content">
+            <h3>Jane Smith</h3>
+            <p class="alumni-designation">Product Manager at Microsoft</p>
+            <div class="alumni-info">
+              <p><i class="fas fa-graduation-cap"></i> <span>Batch: 2012</span></p>
+              <p><i class="fas fa-laptop-code"></i> <span>IT</span></p>
+              <p><i class="fas fa-map-marker-alt"></i> <span>New York, USA</span></p>
+            </div>
+            <div class="alumni-social">
+              <a href="https://github.com" target="_blank" class="social-btn github">
+                <i class="fab fa-github"></i> GitHub
+              </a>
+              <a href="https://linkedin.com" target="_blank" class="social-btn linkedin">
+                <i class="fab fa-linkedin-in"></i> LinkedIn
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- card-3 -->
+        <div class="alumni-card">
+          <div class="alumni-image">
+            <img src="./images/alumni-card-img.jpg" alt="Mike Johnson">
+          </div>
+          <div class="alumni-content">
+            <h3>Mike Johnson</h3>
+            <p class="alumni-designation">Cloud Architect at Amazon</p>
+            <div class="alumni-info">
+              <p><i class="fas fa-graduation-cap"></i> <span>Batch: 2015</span></p>
+              <p><i class="fas fa-laptop-code"></i> <span>ECE</span></p>
+              <p><i class="fas fa-map-marker-alt"></i> <span>Seattle, USA</span></p>
+            </div>
+            <div class="alumni-social">
+              <a href="https://github.com" target="_blank" class="social-btn github">
+                <i class="fab fa-github"></i> GitHub
+              </a>
+              <a href="https://linkedin.com" target="_blank" class="social-btn linkedin">
+                <i class="fab fa-linkedin-in"></i> LinkedIn
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- card-4 -->
+        <div class="alumni-card">
+          <div class="alumni-image">
+            <img src="https://images.unsplash.com/photo-1607746882042-944635dfe10e?crop=faces&fit=crop&h=500&w=500"
+              alt="Emily Davis">
+          </div>
+          <div class="alumni-content">
+            <h3>Emily Davis</h3>
+            <p class="alumni-designation">Data Scientist at Facebook</p>
+            <div class="alumni-info">
+              <p><i class="fas fa-graduation-cap"></i> <span>Batch: 2018</span></p>
+              <p><i class="fas fa-laptop-code"></i> <span>Data Science</span></p>
+              <p><i class="fas fa-map-marker-alt"></i> <span>San Francisco, USA</span></p>
+            </div>
+            <div class="alumni-social">
+              <a href="https://github.com" target="_blank" class="social-btn github">
+                <i class="fab fa-github"></i> GitHub
+              </a>
+              <a href="https://linkedin.com" target="_blank" class="social-btn linkedin">
+                <i class="fab fa-linkedin-in"></i> LinkedIn
+              </a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <!-- Contact Section -->
+  <section id="Contact" class="contact-section">
+    <div class="container">
+      <h2 class="section-heading">Get In Touch</h2>
+      <p class="section-subheading">Have questions? We'd love to hear from you!</p>
+
+      <div class="row">
+        <div class="form-container">
+          <form class="contact-form" action="https://api.web3forms.com/submit" method="POST">
+            <input type="hidden" name="access_key" value="dafa909a-bb8e-4cf7-a2cb-f8956cdf1240" />
+            <div class="form-group">
+              <input type="text" class="form-control" name="name" placeholder="Your Name">
+            </div>
+            <div class="form-group">
+              <input type="email" class="form-control" name="email" placeholder="Your Email">
+            </div>
+            <div class="form-group">
+              <input type="text" class="form-control" name="subject" placeholder="Subject">
+            </div>
+            <div class="form-group">
+              <textarea class="form-control" name="message" rows="5" placeholder="Your Message"></textarea>
+            </div>
+            <button type="submit" class="submit-btn">Send Message</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="inside-footer">
+        <!-- Logo -->
+        <div class="footer-logo">
+          <img src="./images/alumni-logo-footer.png" alt="Alumni Portal Logo">
+          <p class="mt-3">Connecting alumni across the globe</p>
+        </div>
+
+        <!-- Navigation Links -->
+        <ul class="footer-nav">
+          <li><a class="footer-link" href="#">Home</a></li>
+          <li><a class="footer-link" href="#About">About</a></li>
+          <li><a class="footer-link" href="#Alumni">Alumni</a></li>
+          <li><a class="footer-link" href="#Contact">Contact</a></li>
+        </ul>
+
+        <!-- Social Media -->
+        <div class="footer-social">
+          <a href="https://www.facebook.com/" target="_blank" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+          <a href="https://twitter.com/" target="_blank" class="social-icon"><i class="fab fa-twitter"></i></a>
+          <a href="https://www.instagram.com/" target="_blank" class="social-icon"><i class="fab fa-instagram"></i></a>
+          <a href="https://www.linkedin.com/" target="_blank" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
+        </div>
+
+      </div>
+
+      <!-- Copyright -->
+      <div class="footer-copy">
+        &copy; 2025 Alumni Portal. All rights reserved.
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="/js/script.js"></script>
+</body>
+
+</html>

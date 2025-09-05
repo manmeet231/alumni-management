@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LinkedIn-Style Page</title>
+    <link rel="stylesheet" href="./css/community.css" />
+</head>
+
+<body>
+
+    <!-- Sidebar -->
+    <%- include('partials/sidebar') %>
+
+        <!-- Main Content -->
+
+        <div class="content">
+            <!-- Posts Container (Center) -->
+            <div class="posts-container" id="posts-container">
+                <!-- Sample post -->
+                <div class="post">
+                    <div class="post-header">
+                        <img src="./images/alumni-card-img.jpg" alt="User" class="post-user-img">
+                        <div class="post-user-info">
+                            <div class="post-user-name">Jane Smith</div>
+                            <div class="post-user-headline">Product Manager at Tech Company</div>
+                            <div class="post-time">2 hours ago</div>
+                        </div>
+                    </div>
+                    <div class="post-content">
+                        Just finished an amazing product launch! Thanks to everyone on the team for their hard work and
+                        dedication.
+                    </div>
+                    <div class="post-interactions">
+                        <div class="interaction">
+                            <i>👍</i> Like
+                        </div>
+                        <div class="interaction">
+                            <i>💬</i> Comment
+                        </div>
+                        <div class="interaction">
+                            <i>↪️</i> Share
+                        </div>
+                    </div>
+                </div>
+
+                <!-- More posts will be dynamically added here -->
+            </div>
+
+            <!-- Post Form (Right) -->
+            <div class="post-form-container">
+                <div class="post-form">
+                    <div class="post-input">
+                        <img src="./images/alumni-card-img.jpg" alt="Your Profile">
+                        <textarea id="post-text" placeholder="What do you want to talk about?"></textarea>
+                    </div>
+                    <div class="post-actions">
+                        <button id="post-button" class="post-button">Post</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script src="./js/community.js"></script>
+</body>
+
+</html>
