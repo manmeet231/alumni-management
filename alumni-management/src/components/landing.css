@@ -1,5 +1,12 @@
+html, body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden; /* prevent horizontal scroll */
+}
+
+
 .landing-container {
-  width: 125%;
+  width: 100vw;
   height: 100vh;              /* full viewport height */
   background-size: cover;      /* cover the whole area */
   background-position: center; /* center the image */
@@ -9,9 +16,29 @@
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  color: white;                /* text color */
+  color: rgb(7, 6, 6);                /* text color */
   text-align: center;
 }
 
+.nav {
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: space-between;
+  padding: 20px; /* semi-transparent navbar */
+}
 
+.nav-right button, .nav-left {
+  margin-left: 30px;
+  color: white;
+  border: none;
+  background: rgb(58, 56, 56);
+  cursor: pointer;
 
+}
+
+.nav-right button:hover, .nav-left:hover {
+  color: #ddd;
+}

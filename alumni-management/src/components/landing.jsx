@@ -16,7 +16,7 @@ const Landing = () => {
           <button>Sign Up</button>
         </div>
       </nav>
-
+      
       <h1>Welcome to Alumni Management</h1>
       <p>Connect with your fellow alumni, explore events, and stay updated!</p>
     </div>
