@@ -1,0 +1,69 @@
+body {
+  background-color:white;
+  color: black;
+  font-family: Arial, sans-serif;
+  padding: 20px;
+}
+
+.container {
+  border: 2px solid black;
+  padding: 20px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.top-bar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 30px;
+}
+
+.search-box {
+  flex-grow: 1;
+  padding: 10px;
+  font-size: 16px;
+}
+
+.button,
+.status-button {
+  padding: 10px 20px;
+  background-color: transparent;
+  border: 2px solid black;
+  color:black;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.account {
+  margin-left: auto;
+  border: 2px solid black;
+  border-radius: 50%;
+  width: 80px;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+}
+
+.account button {
+  background: transparent;
+  border: none;
+  color: black;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.alumni-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 2px solid black;
+  padding: 15px;
+  margin-bottom: 20px;
+}
+
+form {
+  margin: 0;
+}
