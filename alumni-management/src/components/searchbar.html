@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Alumni Directory</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <div class="top-bar">
+      <input class="search-box" type="text" placeholder="Search">
+
+      <form action="action.php" method="post">
+        <button class="button" type="submit" name="filter">Filters</button>
+      </form>
+
+      <form action="action.php" method="post">
+        <div class="account">
+          <button type="submit" name="account">Account</button>
+        </div>
+      </form>
+    </div>
+
+    <div class="alumni-card">
+      <div>Alumni-1 name</div>
+      <form action="action.php" method="post">
+        <input type="hidden" name="alumni" value="Alumni-1">
+        <button class="status-button" type="submit" name="status">Status</button>
+      </form>
+    </div>
+
+    <div class="alumni-card">
+      <div>Alumni-2 name</div>
+      <form action="action.php" method="post">
+        <input type="hidden" name="alumni" value="Alumni-2">
+        <button class="status-button" type="submit" name="status">Status</button>
+      </form>
+    </div>
+
+    <div class="alumni-card">
+      <div>Alumni-3 name</div>
+      <form action="action.php" method="post">
+        <input type="hidden" name="alumni" value="Alumni-3">
+        <button class="status-button" type="submit" name="status">Status</button>
+      </form>
+    </div>
+  </div>
+</body>
+</html>
