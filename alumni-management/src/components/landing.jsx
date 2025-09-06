@@ -17,7 +17,7 @@ const Landing = () => {
         </div>
       </nav>
       
-      <h1 className="landing-title">Welcome to Alumni Management</h1>
+      <h1 className="landing-title">Welcome to AlumNet</h1>
       <p className="landing-subtitle">
         Connect with your fellow alumni, explore events, and stay updated!
       </p>
