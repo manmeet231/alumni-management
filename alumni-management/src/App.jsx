@@ -1,11 +1,16 @@
 import React from "react";
-import Landing from "./components/landing"; // adjust the path if different
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Landing from "./components/landing";  // landing page
+import Features from "./components/features"; // features page
 
 function App() {
   return (
-    <div className="App">
-      <Landing />
-    </div>
+    <Router>
+      <Routes>
+        <Route path="/" element={<Landing />} />
+        <Route path="/features" element={<Features />} />
+      </Routes>
+    </Router>
   );
 }
 

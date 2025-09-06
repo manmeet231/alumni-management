@@ -1,15 +1,24 @@
-.features {
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  margin: 40px;
-  gap: 20px;
+html, body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden; /* prevent horizontal scroll */
+}
 
-  background-image: url("https://picsum.photos/1200/600"); /* replace with your image */
-  background-size: cover;
-  background-position: center;
+
+.features {
+  background-image:url('../assets/images/feaback.jpg');            /* full viewport height */
+  width: 100vmax;
+  height: 100vh;
+  background-size: 100% 100%;              /* full viewport height */      /* cover the whole area */
+  background-position: center; /* center the image */
   background-repeat: no-repeat;
-  
+  position: relative;          /* if you want to position content inside */
+  display: flex;               /* for centering content */
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: rgb(7, 6, 6);                /* text color */
+  text-align: center;
 }
 
 .feature-card {

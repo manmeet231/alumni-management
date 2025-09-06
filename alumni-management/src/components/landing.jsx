@@ -1,6 +1,7 @@
 import React from "react";
-import bgImage from "../assets/images/background.jpg"; // your local image
-import "./Landing.css"; // import the CSS
+import { Link } from "react-router-dom";
+import bgImage from "../assets/images/background.jpg";
+import "./landing.css";
 
 const Landing = () => {
   return (
@@ -20,6 +21,11 @@ const Landing = () => {
       <p className="landing-subtitle">
         Connect with your fellow alumni, explore events, and stay updated!
       </p>
+
+      {/* ✅ Learn More routes to /features */}
+      <Link to="/features">
+        <button className="learn-more-btn">Learn More</button>
+      </Link>
     </div>
   );
 };
