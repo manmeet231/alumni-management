@@ -1,0 +1,32 @@
+.features {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin: 40px;
+  gap: 20px;
+
+  background-image: url("https://picsum.photos/1200/600"); /* replace with your image */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  
+}
+
+.feature-card {
+  background: #f8f9fa;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 250px;
+  text-align: center;
+  transition: transform 0.3s ease;
+}
+
+.feature-card:hover {
+  transform: translateY(-8px);
+}
+
+.feature-card p {
+  font-size: 16px;
+  color: #333;
+}
