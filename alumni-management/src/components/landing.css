@@ -49,3 +49,25 @@ html, body {
   display: flex;
   margin-right: 25px;
 }
+
+.landing-title {
+  opacity: 0;
+  transform: translateY(50px); /* start lower */
+  animation: fadeUp 1s ease-out forwards; /* run once on load */
+}
+
+/* Subtitle animation */
+.landing-subtitle {
+  opacity: 0;
+  transform: translateY(50px);
+  animation: fadeUp 1s ease-out forwards;
+  animation-delay: 0.5s; /* starts after title */
+}
+
+/* Keyframes */
+@keyframes fadeUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
