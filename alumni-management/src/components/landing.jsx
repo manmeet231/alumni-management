@@ -10,7 +10,7 @@ const Landing = () => {
     >
       <nav className="nav">
         <button className="nav-left">Home</button>
-        <div className="nav-right">
+        <div className="nav-right right">
           <button>About Us</button>
           <button>Sign In</button>
           <button>Sign Up</button>
