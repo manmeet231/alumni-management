@@ -12,11 +12,10 @@ const Landing = () => {
         <button className="nav-left">Home</button>
         <div className="nav-right right">
           <button>About Us</button>
-          <button>Sign In</button>
-          <button>Sign Up</button>
+          <button>Sign Up / Login</button>
         </div>
       </nav>
-      
+
       <h1 className="landing-title">Welcome to AlumNet</h1>
       <p className="landing-subtitle">
         Connect with your fellow alumni, explore events, and stay updated!
