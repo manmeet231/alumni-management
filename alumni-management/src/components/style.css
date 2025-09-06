@@ -1,10 +1,27 @@
+html, body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden; /* prevent horizontal scroll */
+}
+
 body {
-  background-color:white;
+  background-color:rgb(255, 255, 255);
   color: black;
   font-family: Arial, sans-serif;
   padding: 20px;
 }
 
+.background-container {
+  position: fixed; /* stays in place even when scrolling */
+  top: 0;
+  left: 0;
+  width: 100vmax;
+  height: 100vh;
+  background-image: url("https://i.ibb.co/twtmrCR1/serch-background.jpg");
+  background-size: 100% 100%;   /* make it cover the whole screen */
+  background-position: center;
+  z-index: -1; /* push behind everything */
+}
 .container {
   border: 2px solid black;
   padding: 20px;
