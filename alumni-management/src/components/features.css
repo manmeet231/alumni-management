@@ -28,6 +28,8 @@ html, body {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   width: 250px;
   text-align: center;
+  display: flex;
+  justify-content: column;
   transition: transform 0.3s ease;
 }
 
@@ -39,3 +41,11 @@ html, body {
   font-size: 16px;
   color: #333;
 }
+
+.card-container {
+  display: flex;
+  flex-direction: column; /* stack vertically */
+  gap: 20px;
+  margin-top: 100px; /* 👈 pushes cards downward */
+}
+
