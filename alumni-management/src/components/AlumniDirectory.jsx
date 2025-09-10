@@ -91,158 +91,76 @@ const AlumniDirectory = () => {
   };
 
   return (
-    <div className="bg-gray-50 min-h-screen font-inter">
-      {/* Header */}
-      <header className="gradient-bg text-white py-6 px-4">
-        <div className="max-w-6xl mx-auto">
-          <div className="flex items-center justify-between mb-8">
-            <div className="flex items-center space-x-3">
-              <div className="w-10 h-10 bg-white rounded-lg flex items-center justify-center">
-                <span className="text-2xl font-bold text-purple-600">A</span>
-              </div>
-              <h1 className="text-2xl font-bold">Alumnet</h1>
+    <div className="alumni-container">
+      {/* Wrapper container for easy styling */}
+      <div className="alumni-wrapper">
+        {/* Header */}
+        <header className="alumni-header">
+          <div className="header-inner">
+            <div className="logo-section">
+              <div className="logo-circle">A</div>
+              <h1 className="logo-text">Alumnet</h1>
             </div>
-            <nav className="hidden md:flex space-x-6">
-              <a href="#" className="hover:text-purple-200 transition-colors">
-                Home
-              </a>
-              <a href="#" className="hover:text-purple-200 transition-colors">
-                Directory
-              </a>
-              <a href="#" className="hover:text-purple-200 transition-colors">
-                Events
-              </a>
-              <a href="#" className="hover:text-purple-200 transition-colors">
-                About
-              </a>
+            <nav className="nav-links">
+              <a href="#">Home</a>
+              <a href="#">Directory</a>
+              <a href="#">Events</a>
+              <a href="#">About</a>
             </nav>
           </div>
 
           {/* Search Section */}
-          <div className="text-center mb-8">
-            <h2 className="text-4xl font-bold mb-4">
-              Find Your Fellow Alumni
-            </h2>
-            <p className="text-xl text-purple-100 mb-8">
-              Connect with graduates from your institution and build meaningful
-              professional relationships
-            </p>
-
-            <div className="max-w-4xl mx-auto">
-              <div className="bg-white rounded-2xl p-6 shadow-xl">
-                <div className="grid md:grid-cols-4 gap-4 mb-4">
-                  <input
-                    type="text"
-                    id="name"
-                    placeholder="Name"
-                    className="px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 outline-none"
-                    value={filters.name}
-                    onChange={handleChange}
-                  />
-                  <select
-                    id="year"
-                    className="px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 outline-none"
-                    value={filters.year}
-                    onChange={handleChange}
-                  >
-                    <option value="">Graduation Year</option>
-                    <option value="2023">2023</option>
-                    <option value="2022">2022</option>
-                    <option value="2021">2021</option>
-                    <option value="2020">2020</option>
-                    <option value="2019">2019</option>
-                    <option value="2018">2018</option>
-                  </select>
-                  <select
-                    id="department"
-                    className="px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 outline-none"
-                    value={filters.department}
-                    onChange={handleChange}
-                  >
-                    <option value="">Department</option>
-                    <option value="computer-science">Computer Science</option>
-                    <option value="business">Business</option>
-                    <option value="engineering">Engineering</option>
-                    <option value="medicine">Medicine</option>
-                    <option value="arts">Arts</option>
-                  </select>
-                  <select
-                    id="location"
-                    className="px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 outline-none"
-                    value={filters.location}
-                    onChange={handleChange}
-                  >
-                    <option value="">Location</option>
-                    <option value="new-york">New York</option>
-                    <option value="california">California</option>
-                    <option value="texas">Texas</option>
-                    <option value="florida">Florida</option>
-                    <option value="international">International</option>
-                  </select>
-                </div>
-                <button
-                  onClick={searchAlumni}
-                  className="w-full bg-purple-600 hover:bg-purple-700 text-white font-semibold py-3 px-8 rounded-lg transition-colors duration-200"
-                >
-                  Search Alumni
-                </button>
-              </div>
+          <div className="search-section">
+            <h2>Find Your Fellow Alumni</h2>
+            <p>Connect with graduates from your institution</p>
+            <div className="search-boxes">
+              <input
+                type="text"
+                id="name"
+                placeholder="Name"
+                value={filters.name}
+                onChange={handleChange}
+              />
+              <select id="year" value={filters.year} onChange={handleChange}>
+                <option value="">Graduation Year</option>
+                <option value="2023">2023</option>
+                <option value="2022">2022</option>
+                <option value="2021">2021</option>
+              </select>
+              <select id="department" value={filters.department} onChange={handleChange}>
+                <option value="">Department</option>
+                <option value="computer-science">Computer Science</option>
+                <option value="business">Business</option>
+              </select>
+              <select id="location" value={filters.location} onChange={handleChange}>
+                <option value="">Location</option>
+                <option value="new-york">New York</option>
+                <option value="california">California</option>
+              </select>
             </div>
+            <button onClick={searchAlumni}>Search Alumni</button>
           </div>
-        </div>
-      </header>
+        </header>
 
-      {/* Search Results */}
-      {results.length > 0 && (
-        <div className="max-w-6xl mx-auto px-4 py-12">
-          <h3 className="text-2xl font-bold text-gray-800 mb-6">
-            Search Results
-          </h3>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+        {/* Search Results */}
+        {results.length > 0 && (
+          <main className="results-section">
             {results.map((alumni) => (
-              <div
-                key={alumni.name}
-                className="bg-white rounded-xl shadow-lg p-6 card-hover"
-              >
-                <div className="flex items-center mb-4">
-                  <div
-                    className={`w-16 h-16 bg-gradient-to-r ${alumni.gradient} rounded-full flex items-center justify-center text-white font-bold text-xl`}
-                  >
-                    {alumni.initials}
-                  </div>
-                  <div className="ml-4">
-                    <h4 className="font-semibold text-lg text-gray-800">
-                      {alumni.name}
-                    </h4>
-                    <p className="text-gray-600">Class of {alumni.year}</p>
-                  </div>
+              <div key={alumni.name} className="alumni-card">
+                <div className={`alumni-avatar ${alumni.gradient}`}>{alumni.initials}</div>
+                <div className="alumni-info">
+                  <h4>{alumni.name}</h4>
+                  <p>Class of {alumni.year}</p>
+                  <p>{alumni.department}</p>
+                  <p>{alumni.role}</p>
+                  <p>{alumni.company}</p>
+                  <p>{alumni.location}</p>
                 </div>
-                <div className="space-y-2 mb-4">
-                  <p className="text-sm text-gray-600">
-                    <span className="font-medium">Department:</span>{" "}
-                    {alumni.department}
-                  </p>
-                  <p className="text-sm text-gray-600">
-                    <span className="font-medium">Current Role:</span>{" "}
-                    {alumni.role}
-                  </p>
-                  <p className="text-sm text-gray-600">
-                    <span className="font-medium">Company:</span>{" "}
-                    {alumni.company}
-                  </p>
-                  <p className="text-sm text-gray-600">
-                    <span className="font-medium">Location:</span>{" "}
-                    {alumni.location}
-                  </p>
-                </div>
-                <button className="w-full bg-purple-600 hover:bg-purple-700 text-white py-2 px-4 rounded-lg transition-colors">
-                  View Profile
-                </button>
               </div>
             ))}
-          </div>
-        </div>
-      )}
+          </main>
+        )}
+      </div>
     </div>
   );
 };

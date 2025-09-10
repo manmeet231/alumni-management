@@ -1,14 +1,16 @@
 import React, { useRef } from "react";
 import bgImage from "../assets/images/background.jpg";
-import Features from "./features"; // 👈 import your Features component
+import Features from "./Features"; // 👈 make sure the file name matches
 import "./landing.css";
+import { Link } from "react-router-dom"; // ✅ correct import
 
 const Landing = () => {
   const featuresRef = useRef(null);
 
- const scrollToFeatures = () => {
-  featuresRef.current.scrollIntoView({ behavior: "smooth" });
-};
+  const scrollToFeatures = () => {
+    featuresRef.current.scrollIntoView({ behavior: "smooth" });
+  };
+
   return (
     <div>
       {/* Landing Section */}
@@ -19,7 +21,9 @@ const Landing = () => {
         <nav className="nav">
           <button className="nav-left">Home</button>
           <div className="nav-right right">
-            <button>About Us</button>
+            <Link to="/alumni">
+              <button>About Us</button>
+            </Link>
             <button>Sign Up / Login</button>
           </div>
         </nav>
