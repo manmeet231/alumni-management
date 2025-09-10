@@ -16,12 +16,12 @@ html, body {
   display: flex;               /* for centering content */
   flex-direction: column;
   justify-content: center;
-  align-items: center;
+  align-items: flex-end;
   color: rgb(7, 6, 6);                /* text color */
   text-align: center;
 }
 
-.feature-card {
+.feature-card{
   background: #f8f9fa;
   padding: 20px;
   border-radius: 12px;
@@ -45,7 +45,55 @@ html, body {
 .card-container {
   display: flex;
   flex-direction: column; /* stack vertically */
-  gap: 20px;
+  justify-content: flex-end;
+  gap: 190px;
   margin-top: 100px; /* 👈 pushes cards downward */
+  margin-right: 400px;
+  margin-bottom: 100px;
+  flex-shrink: 1;
+  flex-wrap: nowrap;
 }
 
+.feature-card-1{
+  background: #f8f9fa;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 250px;
+  text-align: center;
+  display: flex;
+  justify-content: column;
+  transition: transform 0.3s ease;
+  position: relative;
+  top: 70px;
+}
+
+.feature-card-2 {
+  background: #f8f9fa;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 250px;
+  text-align: center;
+  display: flex;
+  justify-content: column;
+  transition: transform 0.3s ease;
+  height: 130px;
+  position: relative;
+  bottom: 40px;
+  left: -120px;
+}
+.feature-card-3 {
+  background: #f8f9fa;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 250px;
+  text-align: center;
+  display: flex;
+  justify-content: column;
+  transition: transform 0.3s ease;
+  margin-bottom: 50px;
+  position: relative;
+  bottom: 35px;
+}
