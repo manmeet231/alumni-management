@@ -22,7 +22,7 @@ html, body {
 
 .nav {
   width: 100%;
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   display: flex;
@@ -30,6 +30,7 @@ html, body {
   align-items: center;
   padding: 20px;
   flex-wrap: nowrap; /* keep in one row */
+  z-index: 1000;
 }
 
 .nav-right button, .nav-left {
