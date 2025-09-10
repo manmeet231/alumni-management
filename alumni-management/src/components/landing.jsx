@@ -1,6 +1,6 @@
 import React, { useRef } from "react";
 import bgImage from "../assets/images/background.jpg";
-import Features from "./Features"; // 👈 make sure the file name matches
+import Features from "./features"; // 👈 make sure the file name matches
 import "./landing.css";
 import { Link } from "react-router-dom"; // ✅ correct import
 

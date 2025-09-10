@@ -55,7 +55,7 @@ html, body {
 }
 
 .feature-card-1{
-  background: #f8f9fa;
+  background: #000000;
   padding: 20px;
   border-radius: 12px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -66,10 +66,11 @@ html, body {
   transition: transform 0.3s ease;
   position: relative;
   top: 70px;
+  color: antiquewhite;
 }
 
 .feature-card-2 {
-  background: #f8f9fa;
+  background: #000000;
   padding: 20px;
   border-radius: 12px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -82,9 +83,10 @@ html, body {
   position: relative;
   bottom: 40px;
   left: -120px;
+  color: antiquewhite;
 }
 .feature-card-3 {
-  background: #f8f9fa;
+  background: #000000;
   padding: 20px;
   border-radius: 12px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -96,4 +98,5 @@ html, body {
   margin-bottom: 50px;
   position: relative;
   bottom: 35px;
+  color: antiquewhite;
 }
