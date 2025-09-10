@@ -15,14 +15,14 @@ html, body {
   position: relative;          /* if you want to position content inside */
   display: flex;               /* for centering content */
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  justify-content: space-around;
+  align-items: flex-end;
   color: rgb(7, 6, 6);                /* text color */
   text-align: center;
 }
 
-.feature-card {
-  background: #f8f9fa;
+.feature-card-1 {
+  background: #000000;
   padding: 20px;
   border-radius: 12px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -31,11 +31,55 @@ html, body {
   display: flex;
   justify-content: column;
   transition: transform 0.3s ease;
+  margin-right: 350px;
+  position: relative;
+  bottom: 10px;
+  color:antiquewhite;
 }
 
-.feature-card:hover {
+.feature-card-2 {
+  background: #000000;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 250px;
+  text-align: center;
+  display: flex;
+  justify-content: column;
+  transition: transform 0.3s ease;
+  color:antiquewhite;
+  margin-right: 400px;
+  position: relative;
+  bottom: 30px;
+}
+
+.feature-card-3 {
+  background: #000000;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 250px;
+  text-align: center;
+  display: flex;
+  justify-content: column;
+  transition: transform 0.3s ease;
+  color:antiquewhite;
+  margin-right: 350px;
+}
+
+
+.feature-card-1:hover {
   transform: translateY(-8px);
 }
+
+.feature-card-2:hover {
+  transform: translateY(-8px);
+}
+
+.feature-card-3:hover {
+  transform: translateY(-8px);
+}
+
 
 .feature-card p {
   font-size: 16px;
@@ -44,8 +88,8 @@ html, body {
 
 .card-container {
   display: flex;
-  flex-direction: column; /* stack vertically */
-  gap: 20px;
-  margin-top: 100px; /* 👈 pushes cards downward */
+  flex-direction: column;   /* stack vertically */
+  justify-content: space-evenly; /* evenly space cards */
+  align-items: flex-end;    /* stick them to the right */
+  height: 100%;             /* take full height so spacing works */
 }
-
