@@ -1,11 +1,17 @@
 import React from "react";
 import "./Features.css";
 import bgImage from "../assets/images/feaback.jpg";
+import logo from "../assets/images/logo.jpg"; // import logo
 import { motion } from "framer-motion";
 
 const Features = () => {
   return (
     <div className="features">
+      {/* Logo Section */}
+      <div className="logo-wrapper">
+        <img src={logo} alt="Logo" className="logo-img" />
+      </div>
+
       <div className="card-container">
         {/* Feature 1 - comes from right */}
         <motion.div

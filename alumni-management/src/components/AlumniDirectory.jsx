@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState , useEffect , useRef} from "react";
 import "./AlumniDirectory.css"; // custom styles
 
 const alumniDatabase = [
@@ -11,6 +11,7 @@ const alumniDatabase = [
     company: "Google",
     initials: "SJ",
     gradient: "from-blue-500 to-purple-600",
+    image: "https://randomuser.me/api/portraits/women/44.jpg",
   },
   {
     name: "Michael Chen",
@@ -21,6 +22,7 @@ const alumniDatabase = [
     company: "Microsoft",
     initials: "MC",
     gradient: "from-green-500 to-blue-600",
+    image: "https://randomuser.me/api/portraits/men/32.jpg",
   },
   {
     name: "Emily Rodriguez",
@@ -31,6 +33,7 @@ const alumniDatabase = [
     company: "Mayo Clinic",
     initials: "ER",
     gradient: "from-pink-500 to-red-600",
+    image: "https://randomuser.me/api/portraits/women/68.jpg",
   },
   {
     name: "David Kim",
@@ -41,6 +44,7 @@ const alumniDatabase = [
     company: "Tesla",
     initials: "DK",
     gradient: "from-yellow-500 to-orange-600",
+    image: "https://randomuser.me/api/portraits/men/76.jpg",
   },
   {
     name: "Lisa Thompson",
@@ -51,6 +55,7 @@ const alumniDatabase = [
     company: "Adobe",
     initials: "LT",
     gradient: "from-indigo-500 to-purple-600",
+    image: "https://randomuser.me/api/portraits/women/12.jpg",
   },
   {
     name: "Alex Patel",
@@ -61,27 +66,47 @@ const alumniDatabase = [
     company: "Goldman Sachs",
     initials: "AP",
     gradient: "from-teal-500 to-green-600",
+    image: "https://randomuser.me/api/portraits/men/23.jpg",
   },
 ];
 
+const AlumniCard = ({ alumni, index = 0 }) => {
+  const cardRef = useRef(null);
+
+  useEffect(() => {
+    const card = cardRef.current;
+    if (card) {
+      card.style.animation = `slideInRight 0.8s ease-out forwards`;
+      card.style.animationDelay = `${index * 0.2}s`;
+    }
+  }, [index]); // only on mount
+
+  return (
+    <div className="alumni-card" ref={cardRef}>
+      <img src={alumni.image} alt={alumni.name} className="alumni-photo" />
+      <div className="alumni-info">
+        <h4>{alumni.name}</h4>
+        <p>Class of {alumni.year}</p>
+        <p>{alumni.department}</p>
+        <p>{alumni.role}</p>
+        <p>{alumni.company}</p>
+        <p>{alumni.location}</p>
+        <button className="connect-btn">Connect</button>
+      </div>
+    </div>
+  );
+};
+
 const AlumniDirectory = () => {
   const [results, setResults] = useState([]);
-  const [filters, setFilters] = useState({
-    name: "",
-    year: "",
-    department: "",
-    location: "",
-  });
+  const [filters, setFilters] = useState({ name: "", year: "", department: "", location: "" });
 
-  const handleChange = (e) => {
-    setFilters({ ...filters, [e.target.id]: e.target.value });
-  };
+  const handleChange = (e) => setFilters({ ...filters, [e.target.id]: e.target.value });
 
   const searchAlumni = () => {
     const filtered = alumniDatabase.filter((alumni) => {
       return (
-        (filters.name === "" ||
-          alumni.name.toLowerCase().includes(filters.name.toLowerCase())) &&
+        (filters.name === "" || alumni.name.toLowerCase().includes(filters.name.toLowerCase())) &&
         (filters.year === "" || alumni.year === filters.year) &&
         (filters.department === "" || alumni.department === filters.department) &&
         (filters.location === "" || alumni.location === filters.location)
@@ -90,37 +115,23 @@ const AlumniDirectory = () => {
     setResults(filtered);
   };
 
+  const recommendations = alumniDatabase.slice(0, 3);
+
   return (
     <div className="alumni-container">
-      {/* Wrapper container for easy styling */}
       <div className="alumni-wrapper">
-        {/* Header */}
+        {/* Header & Search */}
         <header className="alumni-header">
           <div className="header-inner">
             <div className="logo-section">
-              <div className="logo-circle">A</div>
-              <h1 className="logo-text">Alumnet</h1>
+              <div className="logo-circle"></div>
             </div>
-            <nav className="nav-links">
-              <a href="#">Home</a>
-              <a href="#">Directory</a>
-              <a href="#">Events</a>
-              <a href="#">About</a>
-            </nav>
           </div>
-
-          {/* Search Section */}
           <div className="search-section">
             <h2>Find Your Fellow Alumni</h2>
             <p>Connect with graduates from your institution</p>
             <div className="search-boxes">
-              <input
-                type="text"
-                id="name"
-                placeholder="Name"
-                value={filters.name}
-                onChange={handleChange}
-              />
+              <input type="text" id="name" placeholder="Name" value={filters.name} onChange={handleChange} />
               <select id="year" value={filters.year} onChange={handleChange}>
                 <option value="">Graduation Year</option>
                 <option value="2023">2023</option>
@@ -142,24 +153,29 @@ const AlumniDirectory = () => {
           </div>
         </header>
 
-        {/* Search Results */}
-        {results.length > 0 && (
-          <main className="results-section">
-            {results.map((alumni) => (
-              <div key={alumni.name} className="alumni-card">
-                <div className={`alumni-avatar ${alumni.gradient}`}>{alumni.initials}</div>
-                <div className="alumni-info">
-                  <h4>{alumni.name}</h4>
-                  <p>Class of {alumni.year}</p>
-                  <p>{alumni.department}</p>
-                  <p>{alumni.role}</p>
-                  <p>{alumni.company}</p>
-                  <p>{alumni.location}</p>
-                </div>
-              </div>
-            ))}
-          </main>
-        )}
+        {/* Results or Recommendations */}
+<main>
+  {results.length > 0 ? (
+    <div className="results-block">
+      <h2>Search Results</h2>
+      <div className="results-section">
+        {results.map((alumni, index) => (
+          <AlumniCard key={alumni.name} alumni={alumni} index={index} />
+        ))}
+      </div>
+    </div>
+  ) : (
+    <div className="recommendation-block">
+      <h2>Recommended Alumni</h2>
+      <div className="recommendations">
+        {recommendations.map((alumni, index) => (
+          <AlumniCard key={alumni.name} alumni={alumni} index={index} />
+        ))}
+      </div>
+    </div>
+  )}
+</main>
+
       </div>
     </div>
   );

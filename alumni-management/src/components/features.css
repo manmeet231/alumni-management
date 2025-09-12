@@ -97,3 +97,17 @@ html, body {
   align-items: flex-end;    /* stick them to the right */
   height: 100%;             /* take full height so spacing works */
 }
+.logo-wrapper {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 30px;
+}
+
+.logo-img {
+  width: 800px;
+  height: 100vh; /* resize as needed */
+  position: absolute; /* or fixed if you want it to stay when scrolling */
+  top: 50%;
+  left: 0%;   /* small offset from the left */
+  transform: translateY(-50%); /* perfectly centers vertically */
+}
