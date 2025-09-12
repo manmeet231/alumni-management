@@ -3,6 +3,7 @@ import "./Features.css";
 import bgImage from "../assets/images/feaback.jpg";
 import logo from "../assets/images/logo.jpg"; // import logo
 import { motion } from "framer-motion";
+import "./Features.css";
 
 const Features = () => {
   return (

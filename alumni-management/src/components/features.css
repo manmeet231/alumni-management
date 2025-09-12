@@ -4,6 +4,7 @@ html, body {
   overflow-x: hidden; /* prevent horizontal scroll */
 }
 
+
 .features {
   background-image:url('../assets/images/feaback.jpg');            /* full viewport height */
   width: 100vmax;
@@ -14,13 +15,46 @@ html, body {
   position: relative;          /* if you want to position content inside */
   display: flex;               /* for centering content */
   flex-direction: column;
-  justify-content: space-around;
+  justify-content: center;
   align-items: flex-end;
   color: rgb(7, 6, 6);                /* text color */
   text-align: center;
 }
 
-.feature-card-1 {
+.feature-card{
+  background: #f8f9fa;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 250px;
+  text-align: center;
+  display: flex;
+  justify-content: column;
+  transition: transform 0.3s ease;
+}
+
+.feature-card:hover {
+  transform: translateY(-8px);
+}
+
+.feature-card p {
+  font-size: 16px;
+  color: #333;
+}
+
+.card-container {
+  display: flex;
+  flex-direction: column; /* stack vertically */
+  justify-content: flex-end;
+  gap: 190px;
+  margin-top: 100px; /* 👈 pushes cards downward */
+  margin-right: 400px;
+  margin-bottom: 100px;
+  flex-shrink: 1;
+  flex-wrap: nowrap;
+}
+
+.feature-card-1{
   background: #000000;
   padding: 20px;
   border-radius: 12px;
@@ -30,11 +64,9 @@ html, body {
   display: flex;
   justify-content: column;
   transition: transform 0.3s ease;
-  margin-right: 350px;
   position: relative;
-  bottom: 10px;
-  color:antiquewhite;
-  animation: slideInRight 1s ease-out forwards;
+  top: 70px;
+  color: antiquewhite;
 }
 
 .feature-card-2 {
@@ -47,14 +79,12 @@ html, body {
   display: flex;
   justify-content: column;
   transition: transform 0.3s ease;
-  color:antiquewhite;
-  margin-right: 400px;
+  height: 130px;
   position: relative;
-  bottom: 30px;
-  animation: slideInLeft 1s ease-out forwards;
-  animation-delay: 0.3s; /* adds a little stagger */
+  bottom: 40px;
+  left: -120px;
+  color: antiquewhite;
 }
-
 .feature-card-3 {
   background: #000000;
   padding: 20px;
@@ -65,37 +95,10 @@ html, body {
   display: flex;
   justify-content: column;
   transition: transform 0.3s ease;
-  color:antiquewhite;
-  margin-right: 350px;
-  animation: slideInRight 1s ease-out forwards;
-  animation-delay: 0.6s;
-}
-
-
-.feature-card-1:hover {
-  transform: translateY(-8px);
-}
-
-.feature-card-2:hover {
-  transform: translateY(-8px);
-}
-
-.feature-card-3:hover {
-  transform: translateY(-8px);
-}
-
-
-.feature-card p {
-  font-size: 16px;
-  color: #333;
-}
-
-.card-container {
-  display: flex;
-  flex-direction: column;   /* stack vertically */
-  justify-content: space-evenly; /* evenly space cards */
-  align-items: flex-end;    /* stick them to the right */
-  height: 100%;             /* take full height so spacing works */
+  margin-bottom: 50px;
+  position: relative;
+  bottom: 35px;
+  color: antiquewhite;
 }
 .logo-wrapper {
   display: flex;
