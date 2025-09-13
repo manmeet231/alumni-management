@@ -18,16 +18,20 @@ const Landing = () => {
         className="landing-container"
         style={{ backgroundImage: `url(${bgImage})` }}
       >
-        <nav className="nav">
-          <button className="nav-left">Home</button>
-          <div className="nav-right right">
-            <Link to="/alumni">
-              <button>About Us</button>
-            </Link>
-            <button>Sign Up / Login</button>
-          </div>
-        </nav>
+      <nav className="nav">
+    <Link to="/landing">
+    <button className="nav-left">Home</button>
+    </Link>
 
+    <div className="nav-right right">
+    <Link to="/alumni">
+      <button>About Us</button>
+    </Link>
+    <Link to="/login">
+      <button>Sign Up / Login</button>
+    </Link>
+    </div>
+    </nav>
         <h1 className="landing-title">Welcome to AlumNet</h1>
         <p className="landing-subtitle">
           Connect with your fellow alumni, explore events, and stay updated!

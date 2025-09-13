@@ -81,8 +81,8 @@ html, body {
   transition: transform 0.3s ease;
   height: 130px;
   position: relative;
-  bottom: 40px;
-  left: -120px;
+  bottom: 20px;
+  left: -50px;
   color: antiquewhite;
 }
 .feature-card-3 {
@@ -97,7 +97,8 @@ html, body {
   transition: transform 0.3s ease;
   margin-bottom: 50px;
   position: relative;
-  bottom: 35px;
+  bottom: 100px;
+  right:-0px;
   color: antiquewhite;
 }
 .logo-wrapper {

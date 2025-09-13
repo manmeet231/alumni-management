@@ -1,223 +1,745 @@
-/* Outer container for full-page control */
+/* Alumni Directory Scoped Styles */
+
 .alumni-container {
   min-height: 100vh;
-  width: 100vw;
-  background-color: #f8f9fa;
-  background-image: url('../assets/images/background_direct.jpg'); 
-  background-size: 100% 100%;
-  background-position: center;
-  background-repeat: no-repeat;
-
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-
-  padding: 0.5rem 1rem;   /* reduce top padding */
-  box-sizing: border-box;
-}
-
-.alumni-wrapper {
-  width: 100%;
-  max-width: 1200px;
-  display: flex;
-  flex-direction: column;
-  margin-top: -80px; /* pushes the content upwards */
-}
-
-/* Header */
-.alumni-header {
-  width: 70%;
-  background: transparent;
-  color: white;
-  padding: 2rem 1rem;
-  border-radius: 1rem;
-  display: grid;
-  margin-left: 120px;
-}
-
-.alumni-avatar {
-  width: 64px;
-  height: 64px;
-  border-radius: 50%;
+  width: 210vb;
+  position: relative;
   overflow: hidden;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
+  color: #000000;
+  background-image: url('../assets/images/directory.jpg');;
+}
+
+/* Background Animation */
+.alumni-container .background-orbs {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.alumni-container .background-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  animation: pulse 4s ease-in-out infinite;
+}
+
+.alumni-container .orb-1 {
+  top: 25%;
+  left: 25%;
+  width: 288px;
+  height: 288px;
+  background: rgba(0, 0, 0, 0.2);
+  animation-delay: 0s;
+}
+
+.alumni-container .orb-2 {
+  bottom: 25%;
+  right: 25%;
+  width: 288px;
+  height: 288px;
+  background: rgba(0, 0, 0, 0.2);
+  animation-delay: 1s;
+}
+
+.alumni-container .orb-3 {
+  top: 50%;
+  left: 50%;
+  width: 288px;
+  height: 288px;
+  background: rgba(0, 0, 0, 0.1);
+  animation-delay: 2s;
+  transform: translate(-50%, -50%);
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 0.3;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.6;
+    transform: scale(1.1);
+  }
+}
+
+/* Content Wrapper */
+.alumni-container .content-wrapper {
+  position: relative;
+  z-index: 10;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+}
+
+/* Header Styles */
+.alumni-container .header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.alumni-container .header-logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+}
+
+.alumni-container .logo-icon {
+  width: 3rem;
+  height: 3rem;
+  background: linear-gradient(to right, #000000, #656565);
+  border-radius: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+}
+
+.alumni-container .users-icon {
+  width: 1.75rem;
+  height: 1.75rem;
+  color: white;
+}
+
+.alumni-container .header-title {
+  font-size: 3rem;
+  font-weight: 900;
+  background: linear-gradient(to right, #080808, #1b3552, #152a3e);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin: 0;
+}
+
+.alumni-container .header-subtitle {
+  font-size: 1.25rem;
+  color: rgba(0, 0, 0, 0.7);
+  margin-bottom: 2rem;
+  max-width: 32rem;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 1.7;
+}
+
+/* Filter Toggle */
+.alumni-container .filter-toggle-container {
   display: flex;
   justify-content: center;
-  align-items: center;
-  background: #ddd; /* fallback background */
-  font-weight: bold;
-  margin-bottom: 1rem;
-}
-
-.alumni-avatar img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.alumni-photo {
-  width: 80px;
-  height: 80px;
-  border-radius: 50%;
-  object-fit: cover;
-  margin-bottom: 10px;
-}
-
-/* Inner flex layout for header */
-.header-inner {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
   margin-bottom: 2rem;
 }
 
-/* Logo section */
-.logo-text {
-  font-size: 1.5rem;
-  font-weight: bold;
-}
-
-/* Navigation links */
-.nav-links a {
-  margin-left: 1.5rem;
-  transition: color 0.2s;
-  text-decoration: none;
-  color: rgb(255, 255, 255);
-}
-
-.nav-links a:hover {
-  color: #d8b4fe;
-}
-
-/* Search section */
-.search-section {
-  text-align: center;
-}
-
-.search-section h2 {
-  font-size: 2.5rem;
-  margin-bottom: 0.5rem;
-  color: black;
-}
-
-.search-section p {
-  margin-bottom: 1.5rem;
-  color: black;
-}
-
-.search-boxes {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-  gap: 1rem;
-  margin-bottom: 1rem;
-  background: transparent;
-}
-
-.search-boxes input,
-.search-boxes select {
-  padding: 0.5rem;
-  border-radius: 0.5rem;
-  border: 1px solid #ccc;
-  outline: none;
-  background: white;
-  color: black;
-}
-
-.search-section button {
+.alumni-container .filter-toggle-button {
+  background: rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  color: rgb(0, 0, 0);
+  font-weight: 600;
   padding: 0.75rem 1.5rem;
-  background: #9fe8f1;
-  color: white;
-  border-radius: 0.5rem;
+  border-radius: 1rem;
   cursor: pointer;
-  transition: background 0.2s;
-}
-
-.search-section button:hover {
-  background: #667eea;
-}
-
-/* Results */
-.results-section {
+  transition: all 0.3s ease;
   display: flex;
-  flex-wrap: wrap;          /* allow horizontal wrapping */
-  justify-content: center;  /* center cards */
-  gap: 1.5rem;              /* spacing between cards */
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.alumni-container .filter-toggle-button:hover {
+  background: rgba(255, 255, 255, 0.2);
+  border-color: rgba(255, 255, 255, 0.3);
+  transform: translateY(-2px);
+}
+
+.alumni-container .search-icon-small {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+/* Search Section */
+.alumni-container .search-section {
+  transition: all 0.5s ease;
+  overflow: hidden;
+  max-height: 0;
+  opacity: 0;
+}
+
+.alumni-container .search-section.expanded {
+  max-height: 24rem;
+  opacity: 1;
+}
+
+.alumni-container .search-container {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(16px);
+
+}
+
+.alumni-container .search-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+/* Search Box Styles */
+.alumni-container .search-box-container {
+  position: relative;
+}
+
+.alumni-container .search-box-icon {
+  position: absolute;
+  left: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: rgba(0, 0, 0, 0.5);
+  transition: color 0.2s ease;
+}
+
+.alumni-container .search-box-container:focus-within .search-box-icon {
+  color: #060606;
+}
+
+.alumni-container .search-icon {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+.alumni-container .search-select {
+  width: 100%;
+  padding: 1rem 1rem 1rem 3rem;
+  background: rgba(0, 0, 0, 0.05);
+  backdrop-filter: blur(4px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 1rem;
+  color: rgb(3, 3, 3);
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+.alumni-container .search-input {
+  width: 80%;
+  padding: 1rem 1rem 1rem 3rem;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(4px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 1rem;
+  color: rgb(0, 0, 0);
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+
+.alumni-container .search-input::placeholder {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.alumni-container .search-input:focus,
+.alumni-container .search-select:focus {
+  outline: none;
+  border-color: rgba(0, 0, 0, 0.5);
+  background: rgba(255, 255, 255, 0.1);
+  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.2);
+}
+
+.alumni-container .search-select {
+  cursor: pointer;
+}
+
+.alumni-container .search-select option {
+  background: #374151;
+  color: rgb(0, 0, 0);
+}
+
+/* Search Actions */
+.alumni-container .search-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  justify-content: center;
+}
+
+.alumni-container .search-button {
+  background: linear-gradient(to right, #9eb2d1, #cca0f5);
+  color: rgb(0, 0, 0);
+  font-weight: bold;
+  padding: 0.75rem 2rem;
+  border: none;
+  border-radius: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  box-shadow: 0 10px 25px rgba(157, 181, 219, 0.3);
+}
+
+.alumni-container .search-button:hover {
+  transform: translateY(-2px) scale(1.05);
+  box-shadow: 0 15px 35px rgba(136, 155, 186, 0.4);
+}
+
+.alumni-container .clear-button {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(4px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: rgb(0, 0, 0);
+  font-weight: 600;
+  padding: 0.75rem 1.5rem;
+  border-radius: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.alumni-container .clear-button:hover {
+  background: rgba(255, 255, 255, 0.2);
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+/* Main Content */
+.alumni-container .main-content {
   margin-top: 2rem;
 }
 
-
-.results-section h3 {
-  width: 100%;
-  margin-bottom: 20px;
-  text-align: left;
-}
-
-.recommendations {
-  display: flex;
-  flex-wrap: nowrap;
-  justify-content: space-around;
-  gap:150px;
-}
-
-/* Alumni cards */
-.alumni-card {
-  flex: 0 1 250px;           /* fixed width but flexible */
-  background: #fff;
-  border-radius: 10px;
-  padding: 16px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-  transition: transform 0.2s ease;
-  opacity: 0;                /* start hidden */
-}
-/* Hover effect */
-/* Hover effect */
-.alumni-card:hover {
-  transform: translateY(-5px) scale(1.05);
-}
-
-
-/* Slide-in animation only applied via class once */
-.slide-in-card {
-  animation: slideInRight 0.8s ease-out forwards;
-  animation-fill-mode: forwards; /* retain final position */
-}
-
-@keyframes slideInRight {
-  0% {
-    transform: translateX(50px);
-    opacity: 0;
-  }
-  100% {
-    transform: translateX(0);
-    opacity: 1;
-  }
-}
-
-/* Alumni info */
-.alumni-info h4 {
-  font-size: 1.2rem;
-  font-weight: 600;
-  color: #222;
-  margin: 0 0 0.5rem 0;
-}
-
-.alumni-info p {
-  font-size: 0.875rem;
-  color: #555;
-  margin: 0.1rem 0;
-}
-.recommendation-block,
-.results-block {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 100%;
+.alumni-container .results-container {
   margin-bottom: 2rem;
 }
 
-.recommendation-block h2,
-.results-block h2 {
-  text-align: center;
+.alumni-container .results-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.alumni-container .results-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: rgb(0, 0, 0);
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.alumni-container .results-icon {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+.alumni-container .search-results-icon {
+  color: #3b82f6;
+}
+
+.alumni-container .featured-icon {
+  color: #fbbf24;
+}
+
+.alumni-container .results-count {
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 0.875rem;
+}
+
+/* Alumni Grid */
+.alumni-container .alumni-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: 1.5rem;
+}
+
+/* Alumni Card */
+.alumni-container .alumni-card {
+  position: relative;
+  overflow: hidden;
+  border-radius: 1.5rem;
+  background: linear-gradient(135deg, rgba(234, 210, 210, 0.1), rgba(38, 78, 142, 0.05));
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  transition: all 0.5s ease;
+  cursor: pointer;
+}
+
+.alumni-container .alumni-card:hover {
+  transform: scale(1.02);
+  box-shadow: 0 25px 50px rgba(59, 130, 246, 0.2);
+  border-color: rgba(92, 96, 173, 0.3);
+}
+
+.alumni-container .alumni-card.featured {
+  border: 2px solid rgba(251, 191, 36, 0.5);
+}
+
+.alumni-container .featured-badge {
+  position: absolute;
+  top: -0.5rem;
+  right: -0.5rem;
+  z-index: 10;
+}
+
+.alumni-container .featured-badge-inner {
+  background: linear-gradient(to right, #fbbf24, #f59e0b);
+  border-radius: 50%;
+  padding: 0.5rem;
+  box-shadow: 0 10px 25px rgba(251, 191, 36, 0.4);
+}
+
+.alumni-container .star-icon {
+  width: 1rem;
+  height: 1rem;
+  color: white;
+  fill: white;
+}
+
+.alumni-container .card-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.2), rgba(147, 51, 234, 0.2), rgba(236, 72, 153, 0.2));
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+.alumni-container .alumni-card:hover .card-overlay {
+  opacity: 1;
+}
+
+.alumni-container .card-content {
+  position: relative;
+  padding: 1.5rem;
+  height: 90%;
+  display: flex;
+  flex-direction: column;
+}
+
+.alumni-container .card-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
   margin-bottom: 1rem;
-  font-size: 1.8rem;
-  color: #333;
+}
+
+.alumni-container .profile-section {
+  position: relative;
+}
+
+.alumni-container .profile-image-container {
+  width: 4rem;
+  height: 4rem;
+  border-radius: 1rem;
+  overflow: hidden;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  transition: all 0.3s ease;
+}
+
+.alumni-container .alumni-card:hover .profile-image-container {
+  border-color: rgba(59, 130, 246, 0.5);
+}
+
+.alumni-container .profile-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.alumni-container .alumni-card:hover .profile-image {
+  transform: scale(1.1);
+}
+
+.alumni-container .status-indicator {
+  position: absolute;
+  bottom: -0.25rem;
+  right: -0.25rem;
+  width: 1.5rem;
+  height: 1.5rem;
+  background: #10b981;
+  border-radius: 50%;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 4px 10px rgba(16, 185, 129, 0.4);
+}
+
+.alumni-container .profile-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.alumni-container .profile-name {
+  font-weight: bold;
+  font-size: 1.125rem;
+  color: rgb(0, 0, 0);
+  margin-bottom: 0.25rem;
+  transition: color 0.3s ease;
+}
+
+.alumni-container .alumni-card:hover .profile-name {
+  color: #33419f;
+}
+
+.alumni-container .profile-role {
+  color: rgba(0, 0, 0, 0.7);
+  font-weight: 500;
+  font-size: 0.875rem;
+  margin-bottom: 0.25rem;
+}
+
+.alumni-container .profile-company {
+  color: #245292;
+  font-weight: 600;
+  font-size: 0.875rem;
+}
+
+/* Profile Details */
+.alumni-container .profile-details {
+  margin-bottom: 1rem;
+}
+
+.alumni-container .detail-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+  font-size: 0.875rem;
+  color: rgba(0, 0, 0, 0.6);
+}
+
+.alumni-container .detail-icon {
+  width: 1rem;
+  height: 1rem;
+}
+
+.alumni-container .calendar-icon {
+  color: #325794;
+}
+
+.alumni-container .location-icon {
+  color: #2b5a95;
+}
+
+/* Skills Section */
+.alumni-container .skills-section {
+  margin-bottom: 1rem;
+}
+
+.alumni-container .skills-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem;
+}
+
+.alumni-container .skill-tag {
+  padding: 0.25rem 0.5rem;
+  background: rgba(32, 74, 146, 0.1);
+  border-radius: 0.5rem;
+  font-size: 0.75rem;
+  color: rgba(40, 79, 170, 0.8);
+  font-weight: 500;
+}
+
+/* Card Footer */
+.alumni-container .card-footer {
+  margin-top: auto;
+}
+
+.alumni-container .connect-button {
+  width: 100%;
+  background: linear-gradient(to right, #3b82f6, #5eeb27);
+  color: white;
+  font-weight: 600;
+  padding: 0.75rem 1rem;
+  border: none;
+  border-radius: 0.75rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
+}
+
+.alumni-container .connect-button:hover {
+  background: linear-gradient(to right, #2563eb, #7c3aed);
+  transform: scale(1.05);
+  box-shadow: 0 8px 25px rgba(59, 130, 246, 0.4);
+}
+
+.alumni-container .arrow-icon {
+  width: 1rem;
+  height: 1rem;
+  transition: transform 0.3s ease;
+}
+
+.alumni-container .arrow-icon.hovered {
+  transform: translateX(0.25rem);
+}
+
+/* Default Message */
+.alumni-container .default-message {
+  text-align: center;
+  margin-top: 3rem;
+}
+
+.alumni-container .default-message-content {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 1.125rem;
+}
+
+.alumni-container .default-icon {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .alumni-container .content-wrapper {
+    padding: 1.5rem 1rem;
+  }
+  
+  .alumni-container .header-title {
+    font-size: 2.5rem;
+  }
+  
+  .alumni-container .alumni-grid {
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .alumni-container .content-wrapper {
+    padding: 1rem 0.5rem;
+  }
+  
+  .alumni-container .header-title {
+    font-size: 2rem;
+  }
+  
+  .alumni-container .header-subtitle {
+    font-size: 1rem;
+    padding: 0 1rem;
+  }
+  
+  .alumni-container .search-grid {
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+  }
+  
+  .alumni-container .search-actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  .alumni-container .search-button,
+  .alumni-container .clear-button {
+    width: 100%;
+    justify-content: center;
+  }
+  
+  .alumni-container .alumni-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  
+  .alumni-container .results-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+  
+  .alumni-container .card-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.75rem;
+  }
+  
+  .alumni-container .profile-section {
+    align-self: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .alumni-container .header-logo {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  
+  .alumni-container .header-title {
+    font-size: 1.75rem;
+  }
+  
+  .alumni-container .search-container {
+    padding: 1.5rem;
+  }
+  
+  .alumni-container .card-content {
+    padding: 1rem;
+  }
+}
+
+/* Animation for card entrance */
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.alumni-container .alumni-card {
+  animation: slideInUp 0.6s ease forwards;
+}
+
+/* Loading state for images */
+.alumni-container .profile-image {
+  background: linear-gradient(45deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+}
+
+/* Focus styles for accessibility */
+.alumni-container .search-input:focus,
+.alumni-container .search-select:focus,
+.alumni-container .filter-toggle-button:focus,
+.alumni-container .search-button:focus,
+.alumni-container .clear-button:focus,
+.alumni-container .connect-button:focus {
+  outline: 2px solid #3b82f6;
+  outline-offset: 2px;
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .alumni-container {
+    background: #000000;
+  }
+  
+  .alumni-container .alumni-card {
+    border: 2px solid #ffffff;
+    background: rgba(255, 255, 255, 0.1);
+  }
+  
+  .alumni-container .search-input,
+  .alumni-container .search-select {
+    border: 2px solid #ffffff;
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .alumni-container .background-orb {
+    animation: none;
+  }
+  
+  .alumni-container .alumni-card {
+    transition: none;
+  }
+  
+  .alumni-container .connect-button:hover {
+    transform: none;
+  }
+  
+  .alumni-container .profile-image {
+    transition: none;
+  }
 }
