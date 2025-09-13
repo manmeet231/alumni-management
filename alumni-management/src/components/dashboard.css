@@ -2,6 +2,7 @@
 
 .dashboard-container {
     background: linear-gradient(135deg, #f5f7ff 0%, #e8f0ff 50%, #e0e8ff 100%);
+    background-image: url('https://images.rawpixel.com/image_800/cHJpdmF0ZS9sci9pbWFnZXMvd2Vic2l0ZS8yMDIyLTA2L2pvYjk3OS1iYWNrZ3JvdW5kLTAxLmpwZw.jpg');
     min-height: 100vh;
     padding: 2rem;
     width: 200vb    ;

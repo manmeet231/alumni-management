@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { User, Mail, BookOpen, Award, Code, Save, Camera } from 'lucide-react';
+import { User, Mail, BookOpen, Award, Code, Save, Camera, Users } from 'lucide-react';
 import './profilepage.css';
 import { Link } from "react-router-dom"; 
 
 const AlumniProfileEditor = () => {
-  const [formData, setFormData] = useState({
+  // Initialize with empty form data
+  const getInitialFormData = () => ({
     firstName: '',
     lastName: '',
     email: '',
@@ -19,11 +20,10 @@ const AlumniProfileEditor = () => {
     photo: null,
   });
 
+  const [formData, setFormData] = useState(getInitialFormData());
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState('');
-
-  // Get username from localStorage or wherever you store it after login
-  const username = localStorage.getItem('username') || 'mohit@1'; // fallback for testing
+  const [username, setUsername] = useState(localStorage.getItem('username') || '');
 
   const expertiseOptions = [
     // Programming Languages
@@ -54,8 +54,9 @@ const AlumniProfileEditor = () => {
     { category: 'Other Technologies', items: ['Blockchain', 'Cybersecurity', 'Network Administration', 'Quality Assurance', 'Game Development', 'AR/VR', 'IoT', 'Microservices', 'API Development'] }
   ];
 
-  // Load existing profile data when component mounts
+  // Reset form when username changes
   useEffect(() => {
+    setFormData(getInitialFormData());
     if (username) {
       loadProfileData();
     }
@@ -68,6 +69,7 @@ const AlumniProfileEditor = () => {
       const data = await response.json();
       
       if (data.success && data.profile) {
+        // Only update form data if profile exists
         const profile = data.profile;
         setFormData({
           firstName: profile.first_name || '',
@@ -84,11 +86,16 @@ const AlumniProfileEditor = () => {
           photo: profile.photo || null
         });
         setMessage('Profile loaded successfully');
-        // Clear the message after 3 seconds
+        setTimeout(() => setMessage(''), 3000);
+      } else if (data.success && !data.profile) {
+        // Profile doesn't exist - explicitly reset form for new user
+        setFormData(getInitialFormData());
+        setMessage('Welcome! Please fill out your profile');
         setTimeout(() => setMessage(''), 3000);
       }
     } catch (error) {
       console.error('Error loading profile:', error);
+      setFormData(getInitialFormData()); // Reset form on error too
       setMessage('Error loading profile data');
       setTimeout(() => setMessage(''), 3000);
     } finally {
@@ -180,7 +187,7 @@ const AlumniProfileEditor = () => {
         {/* Status Message */}
         {message && (
           <div className={`status-message ${
-            message.includes('successfully') || message.includes('loaded') 
+            message.includes('successfully') || message.includes('loaded') || message.includes('Welcome')
               ? 'status-success' 
               : 'status-error'
           }`}>
@@ -190,9 +197,15 @@ const AlumniProfileEditor = () => {
 
         {/* Header */}
         <div className="profile-header">
+          <div className="navigation-buttons">
             <Link to="/" className="home-btn">
-                Home
-                </Link>
+              Home
+            </Link>
+            <Link to="/alumni" className="alumni-btn">
+              <Users size={16} />
+              View Alumni
+            </Link>
+          </div>
           <div className="avatar-section">
             <div className="avatar-circle">
               {formData.photo ? (
@@ -222,6 +235,14 @@ const AlumniProfileEditor = () => {
               <Camera size={16} />
               Change Photo
             </button>
+            <button
+        className="avatar-remove-btn"
+        onClick={() => setFormData(prev => ({ ...prev, photo: null }))}
+        disabled={loading}
+        >
+    <Camera size={16} />
+    Remove Photo
+    </button>
             
           </div>
           <h1 className="profile-title">Edit Alumni Profile</h1>

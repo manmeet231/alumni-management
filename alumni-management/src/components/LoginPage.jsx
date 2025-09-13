@@ -1,8 +1,7 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom"; 
+import { Link, useNavigate } from "react-router-dom";
 import { Eye, EyeOff, User, Lock, ArrowLeft, AlertCircle } from "lucide-react";
 import './LoginPage.css';
-import { useNavigate } from "react-router-dom";
 
 const LoginPage = () => {
   const [activeTab, setActiveTab] = useState("student");
@@ -13,61 +12,82 @@ const LoginPage = () => {
   const [isLoading, setIsLoading] = useState(false);
 
   const navigate = useNavigate();
-  
+
   const handleSubmit = async (e) => {
-    e.preventDefault();
+  e.preventDefault();
+
+  if (activeTab === "student") {
+    setError("Student login is not available yet. Please use Alumni login.");
+    return;
+  }
+
+  try {
     setIsLoading(true);
     setError("");
 
-    try {
-      const response = await fetch("http://localhost:5000/api/login", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ username, password })
-      });
+    // ✅ Call backend login only for Alumni
+    const res = await fetch("http://localhost:5000/api/login", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ username, password }),
+    });
 
-      const data = await response.json();
+    const data = await res.json();
 
-      if (data.success) {
-        // Redirect to profile page after successful login
-        navigate("/profile", { state: { username } });
+    if (data.success) {
+      // ✅ Check profile
+      const profileRes = await fetch(
+        `http://localhost:5000/api/profile/${username}`
+      );
+      const profileData = await profileRes.json();
+
+      if (profileData.profile && profileData.profile.first_name) {
+        navigate("/dashboard");
       } else {
-        setError(data.message || "Invalid username or password.");
+        navigate("/profile");
       }
-
-    } catch (err) {
-      console.error("Login error:", err);
-      setError("Server error. Please try again.");
-    } finally {
-      setIsLoading(false);
+    } else {
+      setError("Invalid username or password");
     }
-  };
+  } catch (err) {
+    console.error("Login error:", err);
+    setError("Server error, please try again later.");
+  } finally {
+    setIsLoading(false);
+  }
+};
 
   return (
     <div className="login-container">
       <div className="login-wrapper">
+        {/* Animated Background Elements */}
         <div className="background-elements">
           <div className="bg-element bg-element-1"></div>
           <div className="bg-element bg-element-2"></div>
           <div className="bg-element bg-element-3"></div>
         </div>
 
+        {/* Back Button using Link */}
         <Link to="/" className="back-button">
           <ArrowLeft className="w-5 h-5" />
           <span>Back to Landing</span>
         </Link>
 
+        {/* Login Form Container */}
         <div className="login-form-container">
           <div className="login-form-card">
+            {/* Tab Navigation */}
             <div className="login-tabs">
               <div className="login-tabs-inner">
                 <button
+                  type="button"
                   className={`tab-button ${activeTab === "student" ? "active" : ""}`}
                   onClick={() => setActiveTab("student")}
                 >
                   Student Login
                 </button>
                 <button
+                  type="button"
                   className={`tab-button ${activeTab === "alumni" ? "active" : ""}`}
                   onClick={() => setActiveTab("alumni")}
                 >
@@ -76,7 +96,8 @@ const LoginPage = () => {
               </div>
             </div>
 
-            <div className="form-content">
+            {/* Form Content */}
+            <form className="form-content" onSubmit={handleSubmit}>
               <div className="form-header">
                 <div className="form-icon">
                   <User className="w-8 h-8" />
@@ -90,6 +111,7 @@ const LoginPage = () => {
               </div>
 
               <div className="form-fields">
+                {/* Username Field */}
                 <div className="form-group">
                   <label className="form-label">Username</label>
                   <div className="input-wrapper">
@@ -107,6 +129,7 @@ const LoginPage = () => {
                   </div>
                 </div>
 
+                {/* Password Field */}
                 <div className="form-group">
                   <label className="form-label">Password</label>
                   <div className="input-wrapper">
@@ -131,6 +154,7 @@ const LoginPage = () => {
                   </div>
                 </div>
 
+                {/* Error Message */}
                 {error && (
                   <div className="error-message">
                     <AlertCircle className="w-4 h-4" />
@@ -138,8 +162,9 @@ const LoginPage = () => {
                   </div>
                 )}
 
+                {/* Submit Button */}
                 <button
-                  onClick={handleSubmit}
+                  type="submit"
                   disabled={isLoading}
                   className="submit-button"
                 >
@@ -153,18 +178,10 @@ const LoginPage = () => {
                   )}
                 </button>
               </div>
-
-              <div className="form-footer">
-                <p className="footer-text">
-                  Don't have an account?{" "}
-                  <a href="#" className="footer-link">
-                    Contact Administrator
-                  </a>
-                </p>
-              </div>
-            </div>
+            </form>
           </div>
 
+          {/* Footer */}
           <div className="login-footer">
             <p>&copy; 2025 Educational Portal. All rights reserved.</p>
           </div>

@@ -5,17 +5,19 @@ profile-body {
   padding: 0;
   box-sizing: border-box;
 }
+
 .avatar-image {
   width: 100%;
   height: 100%;
   border-radius: 50%;
   object-fit: cover;
 }
+
 /* Profile Editor Container */
 .profile-editor {
   min-height: 100vh;
   width: 200vb;
-  background-image:url('../assets/images/feaback.jpg');
+  background-image: url('../assets/images/feaback.jpg');
   padding: 20px;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
 }
@@ -27,13 +29,65 @@ profile-body {
   border-radius: 24px;
   box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
   overflow: hidden;
+  position: relative;
+}
+
+/* Navigation Buttons */
+.navigation-buttons {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  display: flex;
+  gap: 12px;
+  z-index: 10;
+}
+
+.home-btn,
+.alumni-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 16px;
+  color: white;
+  text-decoration: none;
+  border-radius: 10px;
+  font-weight: 500;
+  font-size: 14px;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.home-btn {
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+}
+
+.home-btn:hover {
+  background: linear-gradient(135deg, #059669 0%, #047857 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(16, 185, 129, 0.3);
+  text-decoration: none;
+  color: white;
+}
+
+.alumni-btn {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.alumni-btn:hover {
+  background: linear-gradient(135deg, #5a67d8 0%, #6b46c1 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(102, 126, 234, 0.3);
+  text-decoration: none;
+  color: white;
 }
 
 /* Header Section */
 .profile-header {
   background: transparent;
   color: black;
-  padding: 40px;
+  padding: 60px 40px 40px;
   text-align: center;
 }
 
@@ -54,7 +108,8 @@ profile-body {
   backdrop-filter: blur(10px);
 }
 
-.avatar-upload-btn {
+.avatar-upload-btn,
+.avatar-remove-btn {
   background: rgba(255, 255, 255, 0.2);
   backdrop-filter: blur(10px);
   border: none;
@@ -63,14 +118,15 @@ profile-body {
   border-radius: 20px;
   font-size: 14px;
   cursor: pointer;
-  display: flex;
+  display: inline-flex;
   align-items: center;
   gap: 8px;
-  margin: 0 auto;
+  margin: 0 8px;
   transition: all 0.3s ease;
 }
 
-.avatar-upload-btn:hover {
+.avatar-upload-btn:hover,
+.avatar-remove-btn:hover {
   background: rgba(255, 255, 255, 0.3);
   transform: translateY(-2px);
 }
@@ -167,6 +223,28 @@ profile-body {
 .form-textarea {
   resize: vertical;
   min-height: 96px;
+}
+
+/* Status Message */
+.status-message {
+  margin-bottom: 20px;
+  padding: 12px 16px;
+  border-radius: 12px;
+  font-size: 14px;
+  font-weight: 500;
+  text-align: center;
+}
+
+.status-success {
+  background: #d1fae5;
+  color: #065f46;
+  border: 1px solid #a7f3d0;
+}
+
+.status-error {
+  background: #fee2e2;
+  color: #991b1b;
+  border: 1px solid #fca5a5;
 }
 
 /* Expertise Section */
@@ -278,6 +356,12 @@ profile-body {
   transform: translateY(0);
 }
 
+.save-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
 /* Responsive Design */
 @media (max-width: 768px) {
   .profile-editor {
@@ -289,7 +373,15 @@ profile-body {
   }
 
   .profile-header {
-    padding: 30px 20px;
+    padding: 80px 20px 40px;
+  }
+
+  .navigation-buttons {
+    position: relative;
+    top: auto;
+    left: auto;
+    justify-content: center;
+    margin-bottom: 20px;
   }
 
   .profile-title {
@@ -329,5 +421,17 @@ profile-body {
 
   .checkbox-item {
     padding: 10px;
+  }
+
+  .navigation-buttons {
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .home-btn,
+  .alumni-btn {
+    font-size: 13px;
+    padding: 8px 14px;
   }
 }

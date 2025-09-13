@@ -7,10 +7,57 @@ const app = express();
 const PORT = 5000;
 
 // Middleware
-app.use(cors({ origin: "http://localhost:5173" })); // frontend origin
+app.use(cors({ origin: "http://localhost:5173" }));
 app.use(express.json());
+// Get profile - with better debugging
+app.get("/api/profile/:username", async (req, res) => {
+  const { username } = req.params;
+  console.log(`Fetching profile for username: "${username}"`); // Debug log
+  
+  if (!username) return res.status(400).json({ error: "Username is required" });
 
-// Connect to PostgreSQL
+  try {
+    const result = await pool.query(
+      "SELECT * FROM profile WHERE username = $1",
+      [username]
+    );
+
+    console.log(`Query result for ${username}:`, result.rows.length, "rows"); // Debug log
+
+    if (result.rows.length > 0) {
+      let profile = result.rows[0];
+      console.log(`Profile found:`, profile.username); // Debug log
+
+      // Convert expertise back to array
+      if (profile.expertise && typeof profile.expertise === "string") {
+        profile.expertise = profile.expertise.split(",").map((s) => s.trim());
+      } else if (!profile.expertise) {
+        profile.expertise = []; // Ensure it's always an array
+      }
+
+      res.json({ success: true, profile });
+    } else {
+      console.log(`No profile found for username: "${username}"`); // Debug log
+      res.json({ success: true, profile: null });
+    }
+  } catch (err) {
+    console.error("Profile fetch error:", err);
+    res.status(500).json({ error: "Server error while fetching profile" });
+  }
+});
+
+// Add a debug route to check what usernames exist
+app.get("/api/debug/usernames", async (req, res) => {
+  try {
+    const result = await pool.query("SELECT username FROM profile");
+    const usernames = result.rows.map(row => row.username);
+    res.json({ usernames });
+  } catch (err) {
+    console.error("Debug error:", err);
+    res.status(500).json({ error: "Debug error" });
+  }
+});
+// PostgreSQL connection
 const pool = new Pool({
   user: "postgres",
   host: "localhost",
@@ -25,25 +72,29 @@ app.get("/", (req, res) => res.send("Backend is running 🚀"));
 // Login route
 app.post("/api/login", async (req, res) => {
   const { username, password } = req.body;
-  if (!username || !password) return res.status(400).json({ message: "Username and password required" });
+  if (!username || !password)
+    return res.status(400).json({ message: "Username and password required" });
 
   try {
     const result = await pool.query(
       "SELECT * FROM users WHERE username = $1 AND password = $2",
       [username, password]
     );
-    if (result.rows.length > 0) res.json({ success: true, message: "Login successful" });
-    else res.status(401).json({ success: false, message: "Invalid username or password" });
+    if (result.rows.length > 0)
+      res.json({ success: true, message: "Login successful" });
+    else
+      res
+        .status(401)
+        .json({ success: false, message: "Invalid username or password" });
   } catch (err) {
     console.error("Login error:", err);
     res.status(500).json({ success: false, message: "Server error" });
   }
 });
 
-// NEW: Get profile route - retrieves saved profile data
+// Get profile
 app.get("/api/profile/:username", async (req, res) => {
   const { username } = req.params;
-  
   if (!username) return res.status(400).json({ error: "Username is required" });
 
   try {
@@ -51,36 +102,18 @@ app.get("/api/profile/:username", async (req, res) => {
       "SELECT * FROM profile WHERE username = $1",
       [username]
     );
-    
+
     if (result.rows.length > 0) {
-      const profile = result.rows[0];
-      
-      // Convert expertise back to array if it was stored as string
-      if (profile.expertise && typeof profile.expertise === 'string') {
-        profile.expertise = profile.expertise.split(', ').filter(item => item.trim() !== '');
+      let profile = result.rows[0];
+
+      // Convert expertise back to array
+      if (profile.expertise && typeof profile.expertise === "string") {
+        profile.expertise = profile.expertise.split(",").map((s) => s.trim());
       }
-      
+
       res.json({ success: true, profile });
     } else {
-      // Return empty profile structure if no profile exists yet
-      res.json({ 
-        success: true, 
-        profile: {
-          username,
-          first_name: '',
-          last_name: '',
-          email: '',
-          bio: '',
-          graduation_year: '',
-          degree: '',
-          major: '',
-          gpa: '',
-          honors: '',
-          certifications: '',
-          expertise: [],
-          photo: ''
-        }
-      });
+      res.json({ success: true, profile: null });
     }
   } catch (err) {
     console.error("Profile fetch error:", err);
@@ -88,7 +121,7 @@ app.get("/api/profile/:username", async (req, res) => {
   }
 });
 
-// Profile save route
+// Save profile
 app.post("/api/profile/save", async (req, res) => {
   const {
     username,
@@ -109,25 +142,25 @@ app.post("/api/profile/save", async (req, res) => {
   if (!username) return res.status(400).json({ error: "Username is required" });
 
   try {
-    // 1️⃣ Insert or update profile
+    // Profile table
     const profileQuery = `
       INSERT INTO profile 
       (username, first_name, last_name, email, bio, graduation_year, degree, major, gpa, honors, certifications, expertise, photo)
       VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13)
       ON CONFLICT (username)
       DO UPDATE SET 
-        first_name = COALESCE(EXCLUDED.first_name, profile.first_name),
-        last_name = COALESCE(EXCLUDED.last_name, profile.last_name),
-        email = COALESCE(EXCLUDED.email, profile.email),
-        bio = COALESCE(EXCLUDED.bio, profile.bio),
-        graduation_year = COALESCE(EXCLUDED.graduation_year, profile.graduation_year),
-        degree = COALESCE(EXCLUDED.degree, profile.degree),
-        major = COALESCE(EXCLUDED.major, profile.major),
-        gpa = COALESCE(EXCLUDED.gpa, profile.gpa),
-        honors = COALESCE(EXCLUDED.honors, profile.honors),
-        certifications = COALESCE(EXCLUDED.certifications, profile.certifications),
-        expertise = COALESCE(EXCLUDED.expertise, profile.expertise),
-        photo = COALESCE(EXCLUDED.photo, profile.photo)
+        first_name = EXCLUDED.first_name,
+        last_name = EXCLUDED.last_name,
+        email = EXCLUDED.email,
+        bio = EXCLUDED.bio,
+        graduation_year = EXCLUDED.graduation_year,
+        degree = EXCLUDED.degree,
+        major = EXCLUDED.major,
+        gpa = EXCLUDED.gpa,
+        honors = EXCLUDED.honors,
+        certifications = EXCLUDED.certifications,
+        expertise = EXCLUDED.expertise,
+        photo = EXCLUDED.photo
       RETURNING *;
     `;
     const profileValues = [
@@ -142,37 +175,37 @@ app.post("/api/profile/save", async (req, res) => {
       gpa || null,
       honors || null,
       certifications || null,
-      Array.isArray(expertise) ? expertise.join(", ") : expertise || null, // safe string
+      Array.isArray(expertise) ? expertise.join(", ") : expertise || null,
       photo || null,
     ];
     const profileResult = await pool.query(profileQuery, profileValues);
 
-    // 2️⃣ Insert or update alumni card
+    // Alumni table
     const alumniQuery = `
       INSERT INTO alumni
       (username, name, year, department, location, role, company, image, skills, featured)
       VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10)
       ON CONFLICT (username)
       DO UPDATE SET
-        name = COALESCE(EXCLUDED.name, alumni.name),
-        year = COALESCE(EXCLUDED.year, alumni.year),
-        department = COALESCE(EXCLUDED.department, alumni.department),
-        location = COALESCE(EXCLUDED.location, alumni.location),
-        role = COALESCE(EXCLUDED.role, alumni.role),
-        company = COALESCE(EXCLUDED.company, alumni.company),
-        image = COALESCE(EXCLUDED.image, alumni.image),
-        skills = COALESCE(EXCLUDED.skills, alumni.skills),
-        featured = COALESCE(EXCLUDED.featured, alumni.featured)
+        name = EXCLUDED.name,
+        year = EXCLUDED.year,
+        department = EXCLUDED.department,
+        location = EXCLUDED.location,
+        role = EXCLUDED.role,
+        company = EXCLUDED.company,
+        image = EXCLUDED.image,
+        skills = EXCLUDED.skills,
+        featured = EXCLUDED.featured
       RETURNING *;
     `;
     const alumniValues = [
       username,
       `${firstName || ""} ${lastName || ""}`.trim(),
-      graduationYear || null,
-      degree || null, // map degree to department if needed
+      graduationYear || new Date().getFullYear(), // fallback to current year
+      degree || null,
       major || null,
-      "Current Role", // placeholder
-      "Current Company", // placeholder
+      "Student/Alumni", // better than placeholder
+      null,
       photo || null,
       Array.isArray(expertise) ? expertise.join(", ") : expertise || null,
       true,
@@ -189,7 +222,7 @@ app.post("/api/profile/save", async (req, res) => {
   }
 });
 
-// Alumni list route
+// Alumni list
 app.get("/api/alumni", async (req, res) => {
   try {
     const result = await pool.query("SELECT * FROM alumni");
