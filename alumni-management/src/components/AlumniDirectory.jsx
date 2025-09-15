@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Search, MapPin, Calendar, Building, User, Star, Filter, ArrowRight, Users } from "lucide-react";
 import "./AlumniDirectory.css";
+import { Link } from "react-router-dom";
 
 const AlumniCard = ({ alumni, index = 0 }) => {
   const [isHovered, setIsHovered] = useState(false);
@@ -88,11 +89,11 @@ const AlumniCard = ({ alumni, index = 0 }) => {
         </div>
 
         <div className="card-footer">
-          <button className="connect-button">
+          <Link to="/profilebio" className="connect-button">
             <span>Connect</span>
             <ArrowRight className={`arrow-icon ${isHovered ? 'hovered' : ''}`} />
-          </button>
-        </div>
+        </Link>
+      </div>
       </div>
     </div>
   );
@@ -319,7 +320,10 @@ const AlumniDirectory = () => {
         <div className="background-orb orb-2"></div>
         <div className="background-orb orb-3"></div>
       </div>
-
+      <Link to="/dashboard" className="dashboard-btn">
+    <Users size={16} />
+        Go to Dashboard
+    </Link>
       <div className="content-wrapper">
         {/* Header */}
         <header ref={headerRef} className="header">

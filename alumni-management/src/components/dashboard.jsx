@@ -1,8 +1,30 @@
-import React from 'react';
-import { PieChart, Pie, Cell, ResponsiveContainer, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
-import { Calendar, Users, Award, TrendingUp, Clock, MapPin } from 'lucide-react';
+import React, { useState, useEffect, useRef } from "react";
+import {
+  PieChart, Pie, Cell, ResponsiveContainer,
+  BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip
+} from 'recharts';
+import { Calendar, Users, Award, TrendingUp, Clock, MapPin, ChevronDown } from 'lucide-react';
 import './dashboard.css';
+import pfp from "../assets/images/pfp.jpg";
+import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom"; 
+
 const Dashboard = () => {
+  const [open, setOpen] = useState(false);
+  const navigate = useNavigate();
+  const dropdownRef = useRef(null);
+
+  // Close dropdown if clicked outside
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+
   // Sample data for pie chart
   const pieData = [
     { name: 'Tech Events', value: 35, color: '#8884d8' },
@@ -12,51 +34,13 @@ const Dashboard = () => {
     { name: 'Others', value: 5, color: '#00C49F' }
   ];
 
-  // Sample timeline data
   const timelineData = [
-    {
-      id: 1,
-      title: "React Developer Conference",
-      date: "2025-01-15",
-      time: "09:00 AM",
-      status: "completed",
-      attendees: 450,
-      location: "San Francisco",
-      type: "conference"
-    },
-    {
-      id: 2,
-      title: "JavaScript Workshop",
-      date: "2025-01-10",
-      time: "02:00 PM",
-      status: "completed",
-      attendees: 120,
-      location: "Online",
-      type: "workshop"
-    },
-    {
-      id: 3,
-      title: "UI/UX Design Meetup",
-      date: "2025-01-08",
-      time: "06:30 PM",
-      status: "completed",
-      attendees: 80,
-      location: "New York",
-      type: "meetup"
-    },
-    {
-      id: 4,
-      title: "AI & Machine Learning Summit",
-      date: "2025-01-05",
-      time: "10:00 AM",
-      status: "completed",
-      attendees: 320,
-      location: "Boston",
-      type: "summit"
-    }
+    { id: 1, title: "React Developer Conference", date: "2025-01-15", time: "09:00 AM", status: "completed", attendees: 450, location: "San Francisco", type: "conference" },
+    { id: 2, title: "JavaScript Workshop", date: "2025-01-10", time: "02:00 PM", status: "completed", attendees: 120, location: "Online", type: "workshop" },
+    { id: 3, title: "UI/UX Design Meetup", date: "2025-01-08", time: "06:30 PM", status: "completed", attendees: 80, location: "New York", type: "meetup" },
+    { id: 4, title: "AI & Machine Learning Summit", date: "2025-01-05", time: "10:00 AM", status: "completed", attendees: 320, location: "Boston", type: "summit" }
   ];
 
-  // Sample monthly attendance data
   const monthlyData = [
     { month: 'Jan', events: 8 },
     { month: 'Feb', events: 12 },
@@ -67,7 +51,7 @@ const Dashboard = () => {
   ];
 
   const getStatusColor = (status) => {
-    switch(status) {
+    switch (status) {
       case 'completed': return 'status-completed';
       case 'upcoming': return 'status-upcoming';
       case 'cancelled': return 'status-cancelled';
@@ -76,7 +60,7 @@ const Dashboard = () => {
   };
 
   const getTypeIcon = (type) => {
-    switch(type) {
+    switch (type) {
       case 'conference': return <Award className="w-4 h-4" />;
       case 'workshop': return <Users className="w-4 h-4" />;
       case 'meetup': return <Calendar className="w-4 h-4" />;
@@ -93,6 +77,43 @@ const Dashboard = () => {
           <h1>Dashboard</h1>
           <p>Welcome back mohit! Here's your activity overview</p>
         </div>
+        <Link to="/alumni" className="alumni-btn">
+        <Users size={16} />
+        View Alumni
+        </Link>
+
+        {/* Account Button */}
+        <div className="absolute top-4 right-6" ref={dropdownRef}>
+          <div className="relative">
+            <button
+              onClick={() => setOpen(!open)}
+              className="flex items-center space-x-2 bg-white px-3 py-2 rounded-full shadow-md border hover:shadow-lg transition focus:outline-none"
+            >
+              <img
+                src={pfp}
+                alt="Profile"
+                className="w-8 h-8 rounded-full border border-gray-300"
+              />
+              <ChevronDown className="w-4 h-4 text-gray-600" />
+            </button>
+
+            {open && (
+              <div className="absolute right-0 mt-2 w-40 bg-white rounded-xl shadow-lg border z-50">
+                <button
+                  onClick={() => {
+                    setOpen(false);
+                    navigate("/profile");
+                  }}
+                  className="w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 rounded-lg"
+                >
+                  Edit Account
+                </button>
+              </div>
+            )}
+          </div>
+        </div>
+
+
 
         {/* Stats Cards */}
         <div className="stats-grid">
@@ -138,7 +159,7 @@ const Dashboard = () => {
           <div className="stat-card">
             <div className="stat-header">
               <div className="stat-info">
-                <p className="stat-label">Average Rating</p>
+                <p className="stat-label">Alumscore</p>
                 <p className="stat-value orange">4.8</p>
                 <p className="stat-change">⭐ Event satisfaction</p>
               </div>

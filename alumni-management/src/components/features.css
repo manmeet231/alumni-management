@@ -4,21 +4,32 @@ html, body {
   overflow-x: hidden; /* prevent horizontal scroll */
 }
 
+.waves-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0; /* behind all content */
+}
 
-.features {
-  background-image:url('../assets/images/feaback.jpg');            /* full viewport height */
-  width: 100vmax;
+
+.features {        /* full viewport height */
+  width: 200vmax;
   height: 100vh;
   background-size: 100% 100%;              /* full viewport height */      /* cover the whole area */
   background-position: center; /* center the image */
   background-repeat: no-repeat;
+  background: transparent;
   position: relative;          /* if you want to position content inside */
   display: flex;               /* for centering content */
   flex-direction: column;
   justify-content: center;
   align-items: flex-end;
-  color: rgb(7, 6, 6);                /* text color */
+  color: rgb(255, 255, 255);                /* text color */
   text-align: center;
+  font-size: 3rem;
+  padding-right: 100px;
 }
 
 .feature-card{
@@ -52,6 +63,7 @@ html, body {
   margin-bottom: 100px;
   flex-shrink: 1;
   flex-wrap: nowrap;
+  background: transparent;
 }
 
 .feature-card-1{
@@ -114,4 +126,17 @@ html, body {
   top: 50%;
   left: 0%;   /* small offset from the left */
   transform: translateY(-50%); /* perfectly centers vertically */
+}
+.left-heading-container {
+  position: absolute;       /* stays on top of background */
+  top: 0;
+  left: 0;                  /* anchor to left */
+  width: 50%;               /* half of parent width */
+  height: 100%;             /* full height */
+  padding: 2rem;            /* spacing inside container */
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start; 
+  align-items: flex-start;
+  background-color: #f3f4f6; /* optional bg */
 }

@@ -17,6 +17,38 @@
   pointer-events: none;
 }
 
+.dashboard-btn {
+  position: relative;
+  z-index: 10;           /* ensure it’s above background */
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 16px;
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  color: white;
+  text-decoration: none;
+  border-radius: 10px;
+  font-weight: 500;
+  font-size: 14px;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  cursor: pointer;
+}
+
+.dashboard-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+}
+
+.background-orbs {
+  position: absolute;
+  inset: 0;
+  z-index: 0;            /* push them behind content */
+  pointer-events: none;  /* don’t block clicks */
+}
+
 .alumni-container .background-orb {
   position: absolute;
   border-radius: 50%;

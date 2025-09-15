@@ -1,9 +1,13 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
 html, body {
   margin: 0;
   padding: 0;
   overflow-x: hidden; /* prevent horizontal scroll */
 }
-
 
 .landing-container {
   width: 100vw;
@@ -66,11 +70,37 @@ html, body {
   padding-bottom: 50px;
   font-size: large;
 }
+.landing-title__typed,
+.landing-title__typed * {
+  color: #000 !important;
+  -webkit-text-fill-color: #000 !important;
+}
 
 /* Keyframes */
 @keyframes fadeUp {
   to {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+
+.learn-more-btn{
+  color: antiquewhite;
+}
+
+@theme inline {
+  --animate-meteor: meteor 5s linear infinite;
+  @keyframes meteor {
+  0% {
+    transform: rotate(var(--angle)) translateX(0);
+    opacity: 1;
+    }
+  70% {
+    opacity: 1;
+    }
+  100% {
+    transform: rotate(var(--angle)) translateX(-500px);
+    opacity: 0;
+    }
   }
 }

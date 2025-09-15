@@ -201,10 +201,10 @@ const AlumniProfileEditor = () => {
             <Link to="/" className="home-btn">
               Home
             </Link>
-            <Link to="/alumni" className="alumni-btn">
-              <Users size={16} />
-              View Alumni
-            </Link>
+            <Link to="/dashboard" className="dashboard-btn">
+            <Users size={16} />
+            Go to Dashboard
+          </Link>
           </div>
           <div className="avatar-section">
             <div className="avatar-circle">

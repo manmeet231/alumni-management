@@ -1,0 +1,8 @@
+.profile-bio-container {
+  background-color: white;   /* change background here */
+  width: 200%;               /* default full width */
+  max-width: 900px;          /* adjust container width */
+  border-radius: 16px;       /* rounded corners */
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1); /* soft shadow */
+  overflow: hidden;
+}

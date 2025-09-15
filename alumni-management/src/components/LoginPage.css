@@ -3,7 +3,7 @@
 .login-container {
     min-height: 100vh;
     background: linear-gradient(135deg, #f0f7ff 0%, #e8f0ff 50%, #e0e8ff 100%);
-    background-image: url('../assets/images/login.jpg');;
+    background-image: none;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -11,7 +11,7 @@
     position: relative;
     overflow: hidden;
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-    width:200vb;
+    width:210vb;
 }
 
 .login-container .login-wrapper {
@@ -439,4 +439,23 @@
     .login-container .form-content {
         padding: 1rem;
     }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-20px); }
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  10%, 30%, 50%, 70%, 90% { transform: translateX(-2px); }
+  20%, 40%, 60%, 80% { transform: translateX(2px); }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+.animate-shake {
+  animation: shake 0.5s;
 }
